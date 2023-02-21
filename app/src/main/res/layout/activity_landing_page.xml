@@ -8,6 +8,7 @@
     android:fitsSystemWindows="true"
     tools:openDrawer="start"
     android:layout_height="match_parent"
+    android:background="@drawable/pichhi2"
     tools:context=".LandingPage">
 
     <LinearLayout
