@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="20dp"
+    android:background="@drawable/neon_text_background"
+    android:gravity="center">
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cardView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:cardElevation="8dp"
+        app:cardCornerRadius="20dp"
+        android:background="#09EFE3"
+        android:backgroundTint="#FAFBFB"
+        app:cardUseCompatPadding="true"
+        android:layout_centerInParent="true"
+        app:contentPadding="20dp">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/txtWelcome"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="30dp"
+                android:layout_centerHorizontal="true"
+                android:text="Chess"
+                android:textColor="#1B0105"
+                android:layout_marginBottom="30dp"
+                android:textSize="35sp"
+                android:padding="20sp"
+                android:textStyle="bold" />
+
+            <EditText
+                android:id="@+id/emailReg"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/txtWelcome"
+                android:layout_centerInParent="true"
+                android:autofillHints="true"
+                android:hint="Enter email"
+                android:inputType="textEmailAddress"
+                android:textSize="20sp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/errmsg2"
+                android:textSize="15dp"
+                android:textColor="#B30000"
+                android:layout_below="@+id/emailReg"
+                />
+
+            <EditText
+                android:id="@+id/nameReg"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/errmsg2"
+                android:layout_centerInParent="true"
+                android:hint="Enter name"
+                android:textSize="20sp" />
+
+
+
+            <EditText
+                android:id="@+id/enterAgeTextView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/nameReg"
+                android:focusable="false"
+                android:layout_centerInParent="true"
+                android:hint="Birthday"
+                android:textSize="20sp" />
+
+
+
+            <EditText
+                android:id="@+id/phone_no"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/enterAgeTextView"
+                android:layout_centerInParent="true"
+                android:hint="Enter your phone no"
+                android:textSize="20sp" />
+
+            <EditText
+                android:id="@+id/passReg"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/phone_no"
+                android:layout_centerInParent="true"
+                android:hint="Enter password"
+        android:inputType="textPassword"
+        android:textSize="20dp" />
+
+    <EditText
+        android:id="@+id/passConf"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/passReg"
+        android:layout_centerInParent="true"
+
+        android:hint="Confirm password"
+        android:inputType="textPassword"
+        android:textSize="20dp" />
+
+
+    <Button
+        android:id="@+id/btnReg"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/passConf"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="30dp"
+        android:layout_marginBottom="25dp"
+        android:background="#BB163A"
+        android:backgroundTint="#1B0105"
+        android:text="Register"
+        android:textAllCaps="false" />
+
+    <TextView
+        android:id="@+id/txtRegWithGmail"
+        android:layout_width="wrap_content"
+
+        android:layout_height="wrap_content"
+
+        android:layout_below="@id/btnReg"
+        android:text="Register with gmail"
+        android:textColor="#00020E"
+        android:layout_marginBottom="10dp"
+        android:textSize="17sp"
+
+        />
+
+    <TextView
+        android:id="@+id/haveAcc"
+        android:layout_width="wrap_content"
+
+        android:layout_height="wrap_content"
+
+        android:layout_below="@id/txtRegWithGmail"
+        android:layout_marginBottom="10dp"
+        android:text="Already have an account?"
+        android:textColor="@color/purple_700"
+        android:textSize="17sp"
+
+        />
+
+        </RelativeLayout>
+
+  </androidx.cardview.widget.CardView>
+
+</RelativeLayout>
