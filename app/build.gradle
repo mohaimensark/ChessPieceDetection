@@ -78,4 +78,7 @@ dependencies {
     implementation 'org.tensorflow:tensorflow-lite-metadata:0.1.0'
    // implementation 'com.greensock:gsap:2.0.2'
 
+    implementation 'com.pierfrancescosoffritti.androidyoutubeplayer:core:11.1.0'
+
+
 }

@@ -140,6 +140,9 @@ public class LandingPage extends AppCompatActivity {
                     case R.id.profileLink:
                         startActivity(new Intent(LandingPage.this,ProfileActivity.class));
                         break;
+                    case R.id.youtube:
+                        startActivity(new Intent(LandingPage.this,Youtube.class));
+                        break;
                 }
 
                 return true;
