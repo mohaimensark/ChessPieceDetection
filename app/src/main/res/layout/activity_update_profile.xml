@@ -32,18 +32,18 @@
       android:layout_width="match_parent"
       android:layout_height="wrap_content"
       android:layout_below="@id/txtUpdate"
-      android:textSize="20sp"
       android:layout_centerInParent="true"
-      android:hint="Enter name" />
+      android:hint="Enter name"
+      android:textSize="20sp" />
 
   <EditText
       android:id="@+id/professUpdate"
       android:layout_width="match_parent"
       android:layout_height="wrap_content"
       android:layout_below="@id/nameUpdate"
-      android:textSize="20sp"
       android:layout_centerInParent="true"
-      android:hint="Enter your profession" />
+      android:hint="Enter your profession"
+      android:textSize="20sp" />
 
   <EditText
       android:id="@+id/aboutUpdate"
@@ -73,12 +73,20 @@
       android:hint="Phone No"
       android:textSize="20sp" />
 
+  <EditText
+      android:id="@+id/updateCountry"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:layout_below="@id/updatePhone"
+      android:layout_centerInParent="true"
+      android:hint="Country"
+      android:textSize="20sp" />
 
   <EditText
       android:id="@+id/passUpdate"
       android:layout_width="match_parent"
       android:layout_height="wrap_content"
-      android:layout_below="@id/updatePhone"
+      android:layout_below="@id/updateCountry"
       android:layout_centerInParent="true"
       android:inputType="textPassword"
 
@@ -91,10 +99,10 @@
       android:layout_height="wrap_content"
       android:layout_below="@id/passUpdate"
       android:layout_centerInParent="true"
-      android:inputType="textPassword"
 
-      android:textSize="20dp"
-      android:hint="Confirm password" />
+      android:hint="Confirm password"
+      android:inputType="textPassword"
+      android:textSize="20dp" />
 
 
   <Button

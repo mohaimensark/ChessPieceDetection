@@ -19,8 +19,8 @@ import com.google.firebase.firestore.FirebaseFirestore;
 
 public class UpdateProfileActivity extends AppCompatActivity {
     ActivityUpdateProfileBinding binding;
-    String name,age,profession,email,about,phone;
-    EditText aboutUpdate,nameUpdate,birthUpdate,professUpdate,upphone,updatePhone;
+    String name,birthday,profession,email,country,about,phone;
+    EditText aboutUpdate,nameUpdate,birthUpdate,professUpdate,upphone,updatePhone,countryUpdate;
     FirebaseAuth firebaseAuth;
     FirebaseFirestore firebaseFirestore;
     FirebaseDatabase firebaseDatabase;
@@ -40,70 +40,70 @@ public class UpdateProfileActivity extends AppCompatActivity {
         birthUpdate = findViewById(R.id.birthUpdate);
         aboutUpdate = findViewById(R.id.aboutUpdate);
         professUpdate = findViewById(R.id.professUpdate);
-
+       countryUpdate = findViewById(R.id.updateCountry);
+        upphone = findViewById(R.id.updatePhone);
 
         name = getIntent().getStringExtra("name");
-       // email = getIntent().getStringExtra("email");
-     //   profession = getIntent().getStringExtra("birthday");
-        age = getIntent().getStringExtra("birthday");
-      //  about = getIntent().getStringExtra("about");
+        email = getIntent().getStringExtra("email");
+        country = getIntent().getStringExtra("country");
+        profession = getIntent().getStringExtra("profession");
+        birthday = getIntent().getStringExtra("birthday");
+        about = getIntent().getStringExtra("about");
         phone = getIntent().getStringExtra("phone");
 
-//        intent.putExtra("birthday", birthday);
-//        intent.putExtra("name", name);
-//        //  intent.putExtra("profession", profession);
-//        intent.putExtra("phone", phone);
-//        intent.putExtra("email", email23);
 
 
-//       // aboutUpdate.setText(about);
-//        birthUpdate.setText(age);
-//        nameUpdate.setText(name);
-//      //  professUpdate.setText(profession);
-//        updatePhone.setText(phone);
-//
+        Toast.makeText(this, email, Toast.LENGTH_SHORT).show();
+
+          aboutUpdate.setText(about);
+        birthUpdate.setText(birthday);
+          nameUpdate.setText(name);
+         professUpdate.setText(profession);
+          upphone.setText(phone);
+         countryUpdate.setText(country);
 
 
-//        binding.btnUpdate.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                String upname = binding.nameUpdate.getText().toString();
-//                String upage = binding.birthUpdate.getText().toString();
-//                //String upemail = binding.emailUpdate.getText().toString();
-//              //  String upprofess = binding.professUpdate.getText().toString();
-//                String upphone = binding.updatePhone.getText().toString();
-//
-//              //  Toast.makeText(UpdateProfileActivity.this, email, Toast.LENGTH_SHORT).show();
-//
-//
-//
-//
-//
-//
-//                firebaseAuth = FirebaseAuth.getInstance();
-//                firebaseFirestore = FirebaseFirestore.getInstance();
-//                firebaseDatabase = FirebaseDatabase.getInstance();
-//
-//
-//
-//
-//
-//                firebaseFirestore.collection("User")
-//                        .document(firebaseAuth.getCurrentUser().getUid()).set(new UserModel(email,upname,upage,upphone))
-//                        .addOnSuccessListener(new OnSuccessListener<Void>() {
-//                            @Override
-//                            public void onSuccess(Void unused) {
-//                                Toast.makeText(UpdateProfileActivity.this, "Updated", Toast.LENGTH_SHORT).show();
-//                                startActivity(new Intent(UpdateProfileActivity.this,ProfileActivity.class));
-//                            }
-//                        })
-//                        .addOnFailureListener(new OnFailureListener() {
-//                            @Override
-//                            public void onFailure(@NonNull Exception e) {
-//                                Toast.makeText(UpdateProfileActivity.this, e.getMessage(), Toast.LENGTH_SHORT).show();
-//                            }
-//                        });
-//            }
-//        });
+        binding.btnUpdate.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String upname = binding.nameUpdate.getText().toString();
+                String upage = binding.birthUpdate.getText().toString();
+                String upabout = binding.aboutUpdate.getText().toString();
+                 String upprofess = binding.professUpdate.getText().toString();
+                String upphone2 = binding.updatePhone.getText().toString();
+                 String countryUpdate = binding.updateCountry.getText().toString();
+                Toast.makeText(UpdateProfileActivity.this, email, Toast.LENGTH_SHORT).show();
+
+
+
+
+
+
+                firebaseAuth = FirebaseAuth.getInstance();
+                firebaseFirestore = FirebaseFirestore.getInstance();
+                firebaseDatabase = FirebaseDatabase.getInstance();
+
+
+
+
+
+                firebaseFirestore.collection("User")
+                        .document(firebaseAuth.getCurrentUser().getUid()).set(new UserModel(email,upname,upage,upphone2,upabout,upprofess,countryUpdate))
+                        .addOnSuccessListener(new OnSuccessListener<Void>() {
+                            @Override
+                            public void onSuccess(Void unused) {
+                                Toast.makeText(UpdateProfileActivity.this, "Updated", Toast.LENGTH_SHORT).show();
+                                startActivity(new Intent(UpdateProfileActivity.this,ProfileActivity.class));
+                                finish();
+                            }
+                        })
+                        .addOnFailureListener(new OnFailureListener() {
+                            @Override
+                            public void onFailure(@NonNull Exception e) {
+                                Toast.makeText(UpdateProfileActivity.this, e.getMessage(), Toast.LENGTH_SHORT).show();
+                            }
+                        });
+            }
+        });
     }
 }

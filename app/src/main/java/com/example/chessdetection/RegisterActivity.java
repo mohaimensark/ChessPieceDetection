@@ -155,7 +155,7 @@ public class RegisterActivity extends AppCompatActivity {
                 String name = binding.nameReg.getText().toString();
                 String email = binding.emailReg.getText().toString();
                 String phone = binding.phoneNo.getText().toString();
-                String ages = binding.enterAgeTextView.getText().toString();
+                String birthday = binding.enterAgeTextView.getText().toString();
                 String password = binding.passReg.getText().toString();
                 String confpass = binding.passConf.getText().toString();
 
@@ -179,16 +179,18 @@ public class RegisterActivity extends AppCompatActivity {
                                                 Toast.makeText(RegisterActivity.this, "Successfully registered", Toast.LENGTH_SHORT).show();
                                                 progressDialog.cancel();
                                                 startActivity(new Intent(RegisterActivity.this,MainActivity.class));
-
+                                                finish();
                                                 progressDialog.cancel();
 
                                                 firebaseAuth = FirebaseAuth.getInstance();
                                                 firebaseFirestore = FirebaseFirestore.getInstance();
                                                 firebaseDatabase = FirebaseDatabase.getInstance();
-
+                                                String about="Update your about";
+                                                String profession = "Update your profession";
+                                                String country = "Set up your country";
                                                 Toast.makeText(RegisterActivity.this, "Success!", Toast.LENGTH_SHORT).show();
                                                 firebaseFirestore.collection("User")
-                                                        .document(Objects.requireNonNull(FirebaseAuth.getInstance().getUid())).set(new UserModel(email, name, ages, phone));
+                                                        .document(Objects.requireNonNull(FirebaseAuth.getInstance().getUid())).set(new UserModel(email, name, birthday, phone,about,profession,country));
 
                                             }
                                         }).addOnFailureListener(new OnFailureListener() {

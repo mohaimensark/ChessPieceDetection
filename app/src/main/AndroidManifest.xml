@@ -51,6 +51,8 @@
             android:name="com.google.android.geo.API_KEY"
             android:value="AIzaSyDrGNDHT_etsuRoGFtnuJxcbAV0gUF8DhY" />
 
+
+
         <activity
             android:name=".SettingsActivity"
             android:exported="false">
@@ -130,3 +132,17 @@
     </application>
 
 </manifest>
+<!--=======-->
+
+<!--    <manifest xmlns:android ="http://schemas.android.com/apk/res/android"-->
+<!--    >-->
+<!--    <application>-->
+<!--    <activity android:name ="com.example.chessdetection.KotlinActivity"-->
+<!--    android:exported="false"-->
+
+<!--    >-->
+<!--    <meta-data android:name="android.app.lib_name" android:value="" />-->
+<!--    </activity>-->
+<!--    </application>-->
+<!--    </manifest>-->
+<!--    >>>>>>> Added-->

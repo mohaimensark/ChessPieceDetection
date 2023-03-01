@@ -12,11 +12,6 @@
             android:icon="@drawable/ic_portablejim_chess"
             />
 
-        <item android:id="@+id/navi_rate"
-            android:title="@string/rate_us"
-            android:icon="@android:drawable/ic_menu_edit"
-            />
-
         <item android:id="@+id/location"
             android:title="Know your location"
             android:icon="@android:drawable/ic_dialog_email"
@@ -37,10 +32,10 @@
         >
 
         <menu>
-            <item android:id="@+id/gsap"
-                android:title="@string/see_gsap_animation"
-                android:icon="@android:drawable/ic_menu_share"
-                />
+<!--            <item android:id="@+id/gsap"-->
+<!--                android:title="@string/see_gsap_animation"-->
+<!--                android:icon="@android:drawable/ic_menu_share"-->
+<!--                />-->
 
 <!--            <item android:id="@+id/navi_send"-->
 <!--                android:icon="@android:drawable/ic_menu_send"-->

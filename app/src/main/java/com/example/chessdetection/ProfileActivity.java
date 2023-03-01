@@ -41,7 +41,7 @@ public class ProfileActivity extends AppCompatActivity {
 
     ActivityProfileBinding binding;
 
-    TextView name,profession,email,about,birthday,phone;
+    TextView name,profession,email,about,birthday,phone,country;
     FirebaseAuth firebaseAuth;
     FirebaseFirestore firebaseFirestore;
     String userId;
@@ -69,6 +69,7 @@ public class ProfileActivity extends AppCompatActivity {
         birthday = findViewById(R.id.birthday);
         phone = findViewById(R.id.phone);
         about = findViewById(R.id.about);
+        country = findViewById(R.id.country);
         logout = findViewById(R.id.logout);
 
         firebaseAuth = FirebaseAuth.getInstance();
@@ -166,8 +167,9 @@ public class ProfileActivity extends AppCompatActivity {
                 name.setText(value.getString("name"));
                 email.setText(value.getString("email"));
                 phone.setText(value.getString("phone"));
-                birthday.setText(value.getString("birthday"));
-
+                birthday.setText(value.getString("birthdate"));
+                about.setText(value.getString("about"));
+                profession.setText(value.getString("profess"));
 
             }
         });
@@ -188,17 +190,34 @@ public class ProfileActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 String name = binding.name.getText().toString();
-              //  String profession = binding.prof.getText().toString();
-               // String about = binding.about.getText().toString();
+                String profession = binding.prof.getText().toString();
+                String about = binding.about.getText().toString();
                 String birthday = binding.birthday.getText().toString();
+                String country = binding.country.getText().toString();
                 String email23 = binding.email.getText().toString();
                 String phone = binding.phone.getText().toString();
                 Intent intent = new Intent(ProfileActivity.this, UpdateProfileActivity.class);
                 intent.putExtra("birthday", birthday);
                 intent.putExtra("name", name);
-              //  intent.putExtra("profession", profession);
+                intent.putExtra("profession",profession);
+                intent.putExtra("about",about);
+                intent.putExtra("country",country);
+              // intent.putExtra("email", profession);
                 intent.putExtra("phone", phone);
-               // intent.putExtra("email", email23);
+                intent.putExtra("email", email23);
+
+//Corresponding receiving paremeter
+//                name = getIntent().getStringExtra("name");
+//
+//                country = getIntent().getStringExtra("country");
+//                profession = getIntent().getStringExtra("profession");
+//                birthday = getIntent().getStringExtra("birthday");
+//                about = getIntent().getStringExtra("about");
+//                phone = getIntent().getStringExtra("phone");
+
+
+
+
                 startActivity(intent);
             }
         });

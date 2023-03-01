@@ -2,6 +2,7 @@ plugins {
     id 'com.android.application'
     id 'com.google.gms.google-services'
     id 'com.google.android.libraries.mapsplatform.secrets-gradle-plugin'
+    id 'org.jetbrains.kotlin.android'
 }
 
 android {
@@ -77,6 +78,7 @@ dependencies {
     implementation 'org.tensorflow:tensorflow-lite-support:0.1.0'
     implementation 'org.tensorflow:tensorflow-lite-metadata:0.1.0'
    // implementation 'com.greensock:gsap:2.0.2'
+    implementation 'com.android.volley:volley:1.2.0'
 
     implementation 'com.pierfrancescosoffritti.androidyoutubeplayer:core:11.1.0'
 
