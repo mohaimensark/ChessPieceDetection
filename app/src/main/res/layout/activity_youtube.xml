@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/y1"
+        android:text="# Learn Fried Liver Attack "
+        android:textSize="25dp"
+        android:textStyle="bold"
+        android:layout_margin="10dp"
+        android:textColor="#B1030E"
+        />
+
+    <com.pierfrancescosoffritti.androidyoutubeplayer.core.player.views.YouTubePlayerView
+        android:id="@+id/youtube_player_view"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/y1"
+        app:videoId="0ITi9Jc0J-o"
+        app:autoPlay="false"
+     />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="# Learn Sicilian Defence "
+        android:textSize="25dp"
+        android:textStyle="bold"
+        android:id="@+id/y2"
+        android:layout_below="@+id/youtube_player_view"
+        android:layout_margin="10dp"
+        android:textColor="#03B120"
+        />
+
+    <com.pierfrancescosoffritti.androidyoutubeplayer.core.player.views.YouTubePlayerView
+        android:id="@+id/youtube_player_view2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+       android:layout_below="@+id/y2"
+        app:videoId="qM4e7g2RukI"
+        app:autoPlay="false"
+        />
+
+</RelativeLayout>
+
+
+
+
+<!--<TextView-->
+<!--android:layout_width="wrap_content"-->
+<!--android:layout_height="wrap_content"-->
+<!--android:text="# Learn Queen's Gambit "-->
+<!--android:textSize="25dp"-->
+<!--android:textStyle="bold"-->
+<!--android:id="@+id/y3"-->
+<!--android:layout_below="@+id/youtube_player_view2"-->
+<!--android:layout_margin="10dp"-->
+<!--android:textColor="#3AB103"-->
+<!--    />-->
+
+<!--<com.pierfrancescosoffritti.androidyoutubeplayer.core.player.views.YouTubePlayerView-->
+<!--android:id="@+id/youtube_player_view3"-->
+<!--android:layout_width="match_parent"-->
+<!--android:layout_height="wrap_content"-->
+<!--android:layout_below="@+id/y3"-->
+<!--app:videoId="pXMG4KCXo94"-->
+<!--app:autoPlay="false"-->
+<!--    />-->
+<!--<TextView-->
+<!--android:layout_width="wrap_content"-->
+<!--android:layout_height="wrap_content"-->
+<!--android:text="# Learn King's Gambit "-->
+<!--android:textSize="25dp"-->
+<!--android:textStyle="bold"-->
+<!--android:id="@+id/y4"-->
+<!--android:layout_below="@+id/youtube_player_view3"-->
+<!--android:layout_margin="10dp"-->
+<!--android:textColor="#0331B1"-->
+<!--    />-->
+
+<!--<com.pierfrancescosoffritti.androidyoutubeplayer.core.player.views.YouTubePlayerView-->
+<!--android:id="@+id/youtube_player_view4"-->
+<!--android:layout_width="match_parent"-->
+<!--android:layout_height="wrap_content"-->
+<!--android:layout_below="@+id/y4"-->
+<!--app:videoId="_UxEMdsV4iY"-->
+<!--app:autoPlay="false"-->
+<!--    />-->

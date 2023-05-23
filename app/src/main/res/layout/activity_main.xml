@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity"
+    android:background="@drawable/neon_text_background"
+    android:padding="20dp"
+
+    >
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cardView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:cardElevation="8dp"
+        app:cardCornerRadius="20dp"
+        android:background="#09EFE3"
+        android:backgroundTint="#FAFBFB"
+        android:layout_centerInParent="true"
+       app:cardUseCompatPadding="true"
+        app:contentPadding="20dp">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+    <TextView
+        android:id="@+id/txtWelcome"
+        android:layout_width="wrap_content"
+
+        android:layout_height="wrap_content"
+
+        android:layout_marginTop="40dp"
+        android:layout_centerHorizontal="true"
+        android:text="Welcome to Chess"
+        android:textColor="#14BFAE"
+        android:layout_marginBottom="60dp"
+        android:textSize="29sp"
+        android:padding="20sp"
+        android:textStyle="bold" />
+
+    <EditText
+        android:id="@+id/emailSin"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/txtWelcome"
+        android:textSize="20sp"
+        android:layout_centerInParent="true"
+        android:inputType="textEmailAddress"
+        android:hint="Enter email" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/errmsg"
+                android:textSize="15dp"
+                android:textColor="#B30000"
+                android:layout_below="@+id/emailSin"/>
+
+            <EditText
+                android:id="@+id/passSin"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/errmsg"
+                android:layout_centerInParent="true"
+                android:layout_marginTop="30dp"
+                android:hint="Enter password"
+                android:inputType="textPassword"
+                android:textSize="20dp" />
+
+            <CheckBox
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/passSin"
+                android:text=" remember me "/>
+
+
+    <Button
+        android:id="@+id/buttonId"
+        android:layout_width="wrap_content"
+        android:layout_height="40dp"
+        android:layout_below="@id/passSin"
+        android:textSize="15sp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="60dp"
+        android:layout_marginBottom="20dp"
+        android:background="@color/teal_700"
+        android:text="Sign In"
+        android:textAllCaps="false"
+        android:textColor="#FCF9F9" />
+
+    <TextView
+        android:id="@+id/txtFor"
+        android:layout_width="wrap_content"
+
+        android:layout_height="wrap_content"
+
+        android:layout_below="@id/buttonId"
+        android:layout_marginBottom="20dp"
+        android:text="Forget Password?"
+        android:textColor="#681029"
+        android:textSize="15sp"
+
+        />
+
+    <TextView
+        android:id="@+id/txtReg"
+        android:layout_width="wrap_content"
+
+        android:layout_height="wrap_content"
+
+
+        android:layout_below="@id/txtFor"
+        android:layout_marginBottom="30dp"
+        android:text="Create New Account"
+        android:textColor="@color/purple_700"
+        android:textSize="15sp"
+
+        />
+        </RelativeLayout>
+    </androidx.cardview.widget.CardView>
+
+</RelativeLayout>

@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <group android:checkableBehavior="single">
+
+        <item android:id="@+id/profileLink"
+            android:title="Profile"
+            android:icon="@drawable/ic_portablejim_chess"
+            />
+
+        <item android:id="@+id/navi_android"
+            android:title="@string/detect"
+            android:icon="@drawable/ic_portablejim_chess"
+            />
+
+        <item android:id="@+id/location"
+            android:title="Know your location"
+            android:icon="@android:drawable/ic_dialog_email"
+            />
+        <item android:id="@+id/youtube"
+            android:title="See youtube video"
+            android:icon="@drawable/ic_portablejim_chess"
+            />
+        <item android:id="@+id/phoneVerify"
+            android:title="Verify your phone no"
+            android:icon="@android:drawable/stat_sys_phone_call"
+            />
+
+
+
+
+
+    </group>
+
+    <item android:title="@string/social_media"
+
+        >
+
+        <menu>
+<!--            <item android:id="@+id/gsap"-->
+<!--                android:title="@string/see_gsap_animation"-->
+<!--                android:icon="@android:drawable/ic_menu_share"-->
+<!--                />-->
+
+<!--            <item android:id="@+id/navi_send"-->
+<!--                android:icon="@android:drawable/ic_menu_send"-->
+<!--                android:title="@string/send"/>-->
+
+            <item android:id="@+id/setting"
+                android:icon="@android:drawable/ic_menu_manage"
+                android:title="@string/setting"/>
+
+
+            <item android:id="@+id/ofline"
+                android:icon="@android:drawable/presence_offline"
+                android:title="Learn about chess piece"/>
+
+
+            <item android:id="@+id/uplode"
+                android:icon="@android:drawable/btn_star_big_on"
+                android:title="Historical player"/>
+
+
+
+            <item android:id="@+id/logout"
+                android:icon="@android:drawable/presence_busy"
+                android:title="@string/log_out"/>
+
+
+        </menu>
+
+    </item>
+</menu>

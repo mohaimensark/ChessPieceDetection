@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="20dp"
+    >
+
+
+
+
+  <TextView
+      android:id="@+id/txtUpdate"
+      android:layout_width="wrap_content"
+
+      android:layout_height="wrap_content"
+
+
+      android:layout_centerHorizontal="true"
+
+      android:text="Update Profile"
+      android:textColor="@color/purple_700"
+      android:layout_marginBottom="10dp"
+      android:textSize="20sp"
+      android:padding="20sp"
+      android:textStyle="bold" />
+
+
+  <EditText
+      android:id="@+id/nameUpdate"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:layout_below="@id/txtUpdate"
+      android:layout_centerInParent="true"
+      android:hint="Enter name"
+      android:textSize="20sp" />
+
+  <EditText
+      android:id="@+id/professUpdate"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:layout_below="@id/nameUpdate"
+      android:layout_centerInParent="true"
+      android:hint="Enter your profession"
+      android:textSize="20sp" />
+
+  <EditText
+      android:id="@+id/aboutUpdate"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:layout_below="@id/professUpdate"
+      android:layout_centerInParent="true"
+      android:hint="About"
+      android:textSize="20sp" />
+
+  <EditText
+      android:id="@+id/birthUpdate"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:layout_below="@id/aboutUpdate"
+      android:layout_centerInParent="true"
+      android:hint="Birthday"
+      android:textSize="20sp" />
+
+
+  <EditText
+      android:id="@+id/updatePhone"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:layout_below="@id/birthUpdate"
+      android:layout_centerInParent="true"
+      android:hint="Phone No"
+      android:textSize="20sp" />
+
+  <EditText
+      android:id="@+id/updateCountry"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:layout_below="@id/updatePhone"
+      android:layout_centerInParent="true"
+      android:hint="Country"
+      android:textSize="20sp" />
+
+  <EditText
+      android:id="@+id/passUpdate"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:layout_below="@id/updateCountry"
+      android:layout_centerInParent="true"
+      android:inputType="textPassword"
+
+      android:textSize="20dp"
+      android:hint="Enter password" />
+
+  <EditText
+      android:id="@+id/passConf"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:layout_below="@id/passUpdate"
+      android:layout_centerInParent="true"
+
+      android:hint="Confirm password"
+      android:inputType="textPassword"
+      android:textSize="20dp" />
+
+
+  <Button
+      android:id="@+id/btnUpdate"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+
+      android:layout_alignParentBottom="true"
+      android:layout_centerHorizontal="true"
+      android:layout_marginTop="60dp"
+      android:layout_marginBottom="20dp"
+      android:background="@color/teal_700"
+
+      android:text="Update" />
+
+
+
+
+
+</RelativeLayout>

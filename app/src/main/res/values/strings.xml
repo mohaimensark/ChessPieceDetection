@@ -1,0 +1,26 @@
+<resources>
+    <string name="app_name">ChessPieceDetection</string>
+    <string name="rate_us">rate us</string>
+    <string name="detect">Detect Chessman</string>
+    <string name="feedback">feedback</string>
+    <string name="open">Open </string>
+
+    <string name="close"> Close</string>
+    <string name="social_media">Social Media</string>
+    <string name="share">Share</string>
+    <string name="send">Send</string>
+    <string name="setting">Setting</string>
+    <string name="ofline">Ofline</string>
+    <string name="upload">Upload</string>
+    <string name="log_out">Log Out</string>
+    <string name="see_gsap_animation">See gsap animation</string>
+    <string name="title_activity_maps">MapsActivity</string>
+    <string name="dropped_pin">dropped_pin</string>
+
+    <string name="question">Enter your question:</string>
+    <string name="query_hint">Type here</string>
+    <string name="response">Response:</string>
+    <string name="submit">Submit</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+</resources>

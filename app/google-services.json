@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "634274611678",
+    "project_id": "chessdetection",
+    "storage_bucket": "chessdetection.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:634274611678:android:8f7bfcad2aa614f9e2dd4f",
+        "android_client_info": {
+          "package_name": "com.example.chessdetection"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "634274611678-edki3rc13pjsjc7tq8cutu7h7vfjdf32.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD1c3c8lx2OE1M6d2I3NzB4rmz_yIWJN64"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "634274611678-edki3rc13pjsjc7tq8cutu7h7vfjdf32.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

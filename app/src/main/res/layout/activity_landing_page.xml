@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.drawerlayout.widget.DrawerLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_marginTop="20dp"
+    android:id="@+id/drawerlayout"
+    android:fitsSystemWindows="true"
+    tools:openDrawer="start"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    tools:context=".LandingPage">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+        <androidx.appcompat.widget.Toolbar
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:background="#4C0505"
+            android:id="@+id/toolBar"
+            android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
+            app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
+            app:titleTextColor="#FFE500"
+            android:elevation="4dp">
+
+
+        </androidx.appcompat.widget.Toolbar>
+
+
+        <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+            xmlns:app="http://schemas.android.com/apk/res-auto"
+            xmlns:tools="http://schemas.android.com/tools"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/black"
+          >
+
+            <ScrollView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_above="@id/idTILQuery"
+                android:layout_alignParentTop="true"
+                android:layout_margin="5dp"
+                android:padding="5dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical">
+
+                    <!-- text view for displaying question-->
+                    <TextView
+                        android:id="@+id/idTVQuestion"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginTop="30dp"
+                        android:padding="4dp"
+                        android:text="Question"
+                        android:textColor="@color/white"
+                        android:textSize="17sp" />
+
+                    <!-- text view for displaying response-->
+                    <TextView
+                        android:id="@+id/idTVResponse"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginTop="5dp"
+                        android:padding="4dp"
+                        android:text="Response"
+                        android:textColor="@color/white"
+                        android:textSize="15sp" />
+                </LinearLayout>
+
+            </ScrollView>
+            <!-- text field for asking question-->
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/idTILQuery"
+
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:layout_margin="5dp"
+                android:hint="Enter your query"
+                android:padding="5dp"
+                android:textColorHint="@color/white"
+                app:hintTextColor="@color/black">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/idEdtQuery"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+
+                    android:drawableEnd="@android:drawable/ic_menu_send"
+                    android:drawableTint="@color/black"
+                    android:ems="10"
+                    android:imeOptions="actionSend"
+                    android:importantForAutofill="no"
+                    android:inputType="textEmailAddress"
+                    android:textColor="@color/white"
+                    android:textColorHint="@color/white"
+                    android:textSize="14sp" />
+            </com.google.android.material.textfield.TextInputLayout>
+        </RelativeLayout>
+
+
+    </LinearLayout>
+
+
+
+<!--    <TextView-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:text="Let's know about chess"-->
+<!--        android:layout_marginTop="180dp"-->
+<!--        android:textSize="30dp"-->
+<!--        android:textColor="@color/purple_700"-->
+<!--        android:layout_marginLeft="55dp"-->
+<!--        />-->
+    <!--        app:headerLayout="@layout/navigation_header"-->
+    <com.google.android.material.navigation.NavigationView
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_gravity="start"
+        android:layout_marginTop="25dp"
+
+        app:menu="@menu/nevigation_menu"
+        android:id="@+id/navigation_view">
+
+    </com.google.android.material.navigation.NavigationView>
+
+
+</androidx.drawerlayout.widget.DrawerLayout>

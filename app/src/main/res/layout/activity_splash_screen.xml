@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center"
+    android:orientation="vertical"
+    android:background="@drawable/neon_text_background"
+    tools:context=".SplashScreen">
+
+
+
+
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="190dp"
+        android:layout_height="400dp"
+        android:layout_centerInParent="true"
+        android:id="@+id/card"
+        android:backgroundTint="#00574E"
+
+        app:cardCornerRadius="150dp">
+
+        <ImageView
+            android:id="@+id/imagesp"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:src="@drawable/pichhi2"
+            />
+
+    </androidx.cardview.widget.CardView>
+
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/card"
+        android:fontFamily="@font/ubuntu_medium"
+        android:text="W E L C O M E"
+        android:textColor="#145F81"
+        android:layout_marginTop="50dp"
+
+
+        android:layout_centerInParent="true"
+        android:textSize="50dp"
+        android:textStyle="bold"/>
+
+
+
+</RelativeLayout>
