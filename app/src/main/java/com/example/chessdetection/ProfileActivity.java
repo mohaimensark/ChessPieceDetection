@@ -107,7 +107,7 @@ public class ProfileActivity extends AppCompatActivity {
                                         reference.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
                                                     @Override
                                                     public void onSuccess(Uri result) {
-                                                        database.getReference().child("User").child("Image").child(firebaseAuth.getCurrentUser().getUid())
+                                                        database.getReference().child("User").child(firebaseAuth.getCurrentUser().getUid())
                                                                 .setValue(result.toString()).addOnSuccessListener(new OnSuccessListener<Void>() {
                                                                     @Override
                                                                     public void onSuccess(Void unused) {
@@ -147,6 +147,7 @@ public class ProfileActivity extends AppCompatActivity {
             }
         });
 
+       // storageRef = FirebaseStorage.getInstance().getReference("ProfilePicture");
         //Loading Image
         StorageReference dc = storage.getReference().child("User").child(firebaseAuth.getCurrentUser().getUid());
 

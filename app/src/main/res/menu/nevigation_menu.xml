@@ -56,14 +56,25 @@
 
 
             <item android:id="@+id/uplode"
-                android:icon="@android:drawable/btn_star_big_on"
+                android:icon="@drawable/ic_person_24"
                 android:title="Historical player"/>
 
+            <item android:id="@+id/rate"
+                android:icon="@drawable/ic_person_24"
+                android:title="Rate Us"/>
 
 
             <item android:id="@+id/logout"
                 android:icon="@android:drawable/presence_busy"
                 android:title="@string/log_out"/>
+
+            <item
+                android:id="@+id/gotoClassify"
+                android:title="Write a post"
+
+                />
+
+
 
 
         </menu>

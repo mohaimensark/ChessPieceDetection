@@ -29,6 +29,7 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.firestore.FirebaseFirestore;
 
@@ -188,16 +189,47 @@ public class RegisterActivity extends AppCompatActivity {
                                                 finish();
                                                 progressDialog.cancel();
 
+
+
                                                 firebaseAuth = FirebaseAuth.getInstance();
-                                                firebaseFirestore = FirebaseFirestore.getInstance();
-                                                firebaseDatabase = FirebaseDatabase.getInstance();
-                                                sendVerificationEmail();
-                                                String about="Update your about";
-                                                String profession = "Update your profession";
-                                                String country = "Set up your country";
-                                                Toast.makeText(RegisterActivity.this, "Success!", Toast.LENGTH_SHORT).show();
-                                                firebaseFirestore.collection("User")
-                                                        .document(Objects.requireNonNull(FirebaseAuth.getInstance().getUid())).set(new UserModel(email, name, birthday, phone,about,profession,country,"false","false"));
+
+                                                FirebaseUser firebaseUser = firebaseAuth.getCurrentUser(); //n
+                                                UserDetails userDetails = new UserDetails(name, email, birthday,phone);
+
+                                                DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference("Users_new");
+
+
+                                                databaseReference.child(firebaseUser.getUid()).setValue(userDetails).addOnCompleteListener(new OnCompleteListener<Void>() {
+                                                    @Override
+                                                    public void onComplete(@NonNull Task<Void> task) {
+
+                                                        if(task.isSuccessful()) {
+
+                                                            firebaseFirestore = FirebaseFirestore.getInstance();
+                                                            firebaseDatabase = FirebaseDatabase.getInstance();
+                                                            sendVerificationEmail();
+                                                            String about="Update your about";
+                                                            String profession = "Update your profession";
+                                                            String country = "Set up your country";
+                                                            Toast.makeText(RegisterActivity.this, "Success!", Toast.LENGTH_SHORT).show();
+                                                            firebaseFirestore.collection("User")
+                                                                    .document(Objects.requireNonNull(FirebaseAuth.getInstance().getUid())).set(new UserModel(email, name, birthday, phone,about,profession,country,"false","false"));
+
+
+                                                        }else {
+                                                            Toast.makeText(RegisterActivity.this, "User register failed. Please try again.",
+                                                                    Toast.LENGTH_LONG).show();
+                                                        }
+
+
+                                                        //
+                                                    }
+                                                });
+
+
+
+
+
 
                                             }
                                         }).addOnFailureListener(new OnFailureListener() {
