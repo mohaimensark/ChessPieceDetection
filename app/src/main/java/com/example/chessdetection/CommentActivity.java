@@ -38,12 +38,14 @@ public class CommentActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         activityCommentBinding = ActivityCommentBinding.inflate(getLayoutInflater());
         setContentView(activityCommentBinding.getRoot());
-        getSupportActionBar().setTitle("Comment");
+        //getSupportActionBar().setTitle("Comment");
 
 
         postKey=getIntent().getStringExtra("postKey");
 
-        userRef = FirebaseDatabase.getInstance().getReference().child("Users");
+        Toast.makeText(this, postKey, Toast.LENGTH_SHORT).show();
+
+        userRef = FirebaseDatabase.getInstance().getReference().child("Users_new");
         commentRef=FirebaseDatabase.getInstance().getReference().child("Posts").child(postKey).child("comments");
 
         FirebaseUser firebaseUser = FirebaseAuth.getInstance().getCurrentUser();

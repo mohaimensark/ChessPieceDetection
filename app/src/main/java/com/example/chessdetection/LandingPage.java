@@ -10,41 +10,19 @@ import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
 import android.content.Intent;
-import android.net.Uri;
 import android.os.Bundle;
-import android.text.Editable;
-import android.text.TextWatcher;
-import android.util.Log;
-import android.view.KeyEvent;
-import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.ViewGroup;
-import android.view.WindowManager;
-import android.view.inputmethod.EditorInfo;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
 
-import com.android.volley.AuthFailureError;
-import com.android.volley.Request;
-import com.android.volley.RequestQueue;
-import com.android.volley.Response;
-import com.android.volley.RetryPolicy;
-import com.android.volley.VolleyError;
-import com.android.volley.toolbox.JsonObjectRequest;
-import com.android.volley.toolbox.Volley;
-import com.bumptech.glide.Glide;
 import com.example.chessdetection.databinding.ActivityLandingPageBinding;
-import com.example.chessdetection.databinding.ActivityRegisterBinding;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
-import com.google.android.gms.tasks.OnFailureListener;
-import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.material.navigation.NavigationView;
-import com.google.android.material.textfield.TextInputEditText;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
@@ -54,18 +32,13 @@ import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 
 import org.checkerframework.checker.nullness.qual.NonNull;
-import org.json.JSONException;
-import org.json.JSONObject;
-
-import java.util.HashMap;
-import java.util.Map;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 
 public class LandingPage extends AppCompatActivity {
 
     Toolbar toolbar1;
-    DrawerLayout drawerLayout;
+    DrawerLayout drawerLayout,drawerLayout2;
     MenuView.ItemView itemView;
     NavigationView navigationView;
     ActivityLandingPageBinding binding;
@@ -98,14 +71,13 @@ public class LandingPage extends AppCompatActivity {
         binding = ActivityLandingPageBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
-
-
         //Toast.makeText(this, "This is landing page", Toast.LENGTH_SHORT).show();
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolBar);
         setSupportActionBar(toolbar);
 
         nav = (NavigationView) findViewById(R.id.navigation_view);
         drawerLayout = (DrawerLayout) findViewById(R.id.drawerlayout);
+
 
         toggle = new ActionBarDrawerToggle(this, drawerLayout, toolbar, R.string.open, R.string.close);
         drawerLayout.addDrawerListener(toggle);
@@ -116,91 +88,66 @@ public class LandingPage extends AppCompatActivity {
 
         img = findViewById(R.id.profile_image);
 
-
-
-//        MenuInflater inflater = getMenuInflater();
-//        // LayoutInflater layoutInflater= getLayoutInflater();
-//        // layoutInflater.inflate(R.menu.nevigation_menu, (ViewGroup) menu);
-//        inflater.inflate(R.menu.settings_menu);
-
-//        StorageReference dc = storage.getReference().child("User").child(firebaseAuth.getCurrentUser().getUid());
-//
-//        dc.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
-//            @Override
-//            public void onSuccess(Uri uri) {
-//
-//                Glide
-//                        .with(LandingPage.this)
-//                        .load(uri) // the uri you got from Firebase
-//                        .into(img); //Your imageView variable
-//                //   Toast.makeText(ProfileActivity.this, "Success", Toast.LENGTH_SHORT).show();
-//            }
-//        }).addOnFailureListener(new OnFailureListener() {
-//            @Override
-//            public void onFailure(@androidx.annotation.NonNull Exception e) {
-//                Toast.makeText(LandingPage.this, e.getMessage(), Toast.LENGTH_SHORT).show();
-//            }
-//        });
-
-        // Logout
-//        binding.logout.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                FirebaseAuth.getInstance().signOut();
-//                Toast.makeText(LandingPage.this, "Logged out", Toast.LENGTH_SHORT).show();
-//                startActivity(new Intent(LandingPage.this,MainActivity.class));
-//                finish();
-//            }
-//        });
-
-        nav.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
+        binding.Write.setOnClickListener(new View.OnClickListener() {
             @Override
-            public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
-                switch (menuItem.getItemId()) {
-                    case R.id.navi_android:
-                        Toast.makeText(getApplicationContext(), "Let's detect chess piece", Toast.LENGTH_LONG).show();
-                        drawerLayout.closeDrawer(GravityCompat.START);
-                        Intent in = new Intent(LandingPage.this, Classify.class);
-                        startActivity(in);
-                        break;
+            public void onClick(View view) {
 
-                    case R.id.location:
-                        Toast.makeText(getApplicationContext(), "Location is open", Toast.LENGTH_LONG).show();
-                        Intent in2 = new Intent(LandingPage.this, MapsActivity.class);
-                        startActivity(in2);
-                        drawerLayout.closeDrawer(GravityCompat.START);
-                        break;
+                Intent intent = new Intent(LandingPage.this, WritePost.class);
+                startActivity(intent);
 
-
-//                    case R.id.gsap :
-//                        Toast.makeText(getApplicationContext(),"Enjoy gsap animation.",Toast.LENGTH_LONG).show();
-//                        drawerLayout.closeDrawer(GravityCompat.START);
-//                        break;
-
-                    case R.id.logout:
-                        FirebaseAuth.getInstance().signOut();
-                        Toast.makeText(LandingPage.this, "Logged out", Toast.LENGTH_SHORT).show();
-                        startActivity(new Intent(LandingPage.this, MainActivity.class));
-                        finish();
-                        break;
-
-                    case R.id.profileLink:
-                        startActivity(new Intent(LandingPage.this, ProfileActivity.class));
-                        break;
-                    case R.id.youtube:
-                        startActivity(new Intent(LandingPage.this, Youtube.class));
-                        break;
-                    case R.id.setting:
-                        startActivity(new Intent(LandingPage.this, SettingsActivity.class));
-                        break;
-                    case R.id.phoneVerify:
-                        startActivity(new Intent(LandingPage.this, PhoneVerification.class));
-                        break;
-                }
-
-                return true;
             }
         });
+
+
+
+
+
+        nav.setNavigationItemSelectedListener(menuItem -> {
+
+            switch (menuItem.getItemId()) {
+                case R.id.navi_android:
+                    Toast.makeText(getApplicationContext(), "Let's detect chess piece", Toast.LENGTH_LONG).show();
+                    drawerLayout.closeDrawer(GravityCompat.START);
+                    Intent in = new Intent(LandingPage.this, Classify.class);
+                    startActivity(in);
+                    break;
+
+                case R.id.location:
+                    Toast.makeText(getApplicationContext(), "Location is open", Toast.LENGTH_LONG).show();
+                    Intent in2 = new Intent(LandingPage.this, MapsActivity.class);
+                    startActivity(in2);
+                    drawerLayout.closeDrawer(GravityCompat.START);
+                    break;
+
+
+                case R.id.logout:
+                    FirebaseAuth.getInstance().signOut();
+                    Toast.makeText(LandingPage.this, "Logged out", Toast.LENGTH_SHORT).show();
+                    startActivity(new Intent(LandingPage.this, MainActivity.class));
+                    finish();
+                    break;
+
+                case R.id.profileLink:
+                    startActivity(new Intent(LandingPage.this, ProfileActivity.class));
+
+                case R.id.rate:
+                    startActivity(new Intent(LandingPage.this, RatingActivity.class));
+                    break;
+                case R.id.youtube:
+                    startActivity(new Intent(LandingPage.this, Youtube.class));
+                    break;
+                case R.id.setting:
+                    startActivity(new Intent(LandingPage.this, SettingsActivity.class));
+                    break;
+                case R.id.phoneVerify:
+                    startActivity(new Intent(LandingPage.this, PhoneVerification.class));
+                    break;
+            }
+
+            return true;
+        });
+
+
 
 
 
@@ -215,27 +162,6 @@ public class LandingPage extends AppCompatActivity {
 
         binding.recyclerViewID.setAdapter(listItemAdapter);
 
-//        toolbar1=findViewById(R.id.toolBar);
-//        itemView = findViewById(R.id.navi_android);
-//
-//        setSupportActionBar(toolbar1);
-//        this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
-//                WindowManager.LayoutParams.FLAG_FULLSCREEN);
-//        drawerLayout=findViewById(R.id.drawerlayout);
-//        ActionBarDrawerToggle toggle=new ActionBarDrawerToggle(this,drawerLayout,toolbar1,R.string.detect,R.string.close);
-//        drawerLayout.addDrawerListener(toggle);
-//
-//        toggle.syncState();
-//
-//        navigationView=findViewById(R.id.navigation_view);
-//     //   navigationView.setNavigationItemSelectedListener((NavigationView.OnNavigationItemSelectedListener) this);
-
-
-        // Working of post started from here
-
-
-
-
 
 
     }
@@ -243,8 +169,6 @@ public class LandingPage extends AppCompatActivity {
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater inflater = getMenuInflater();
-       // LayoutInflater layoutInflater= getLayoutInflater();
-       // layoutInflater.inflate(R.menu.nevigation_menu, (ViewGroup) menu);
         inflater.inflate(R.menu.settings_menu, menu);
         return true;
     }
@@ -289,6 +213,60 @@ public class LandingPage extends AppCompatActivity {
         }
         listItemAdapter.startListening();
     }
+
+
+}
+
+
+
+//        StorageReference dc = storage.getReference().child("User").child(firebaseAuth.getCurrentUser().getUid());
+//
+//        dc.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+//            @Override
+//            public void onSuccess(Uri uri) {
+//
+//                Glide
+//                        .with(LandingPage.this)
+//                        .load(uri) // the uri you got from Firebase
+//                        .into(img); //Your imageView variable
+//                //   Toast.makeText(ProfileActivity.this, "Success", Toast.LENGTH_SHORT).show();
+//            }
+//        }).addOnFailureListener(new OnFailureListener() {
+//            @Override
+//            public void onFailure(@androidx.annotation.NonNull Exception e) {
+//                Toast.makeText(LandingPage.this, e.getMessage(), Toast.LENGTH_SHORT).show();
+//            }
+//        });
+
+// Logout
+//        binding.logout.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                FirebaseAuth.getInstance().signOut();
+//                Toast.makeText(LandingPage.this, "Logged out", Toast.LENGTH_SHORT).show();
+//                startActivity(new Intent(LandingPage.this,MainActivity.class));
+//                finish();
+//            }
+//        });
+
+//        toolbar1=findViewById(R.id.toolBar);
+//        itemView = findViewById(R.id.navi_android);
+//
+//        setSupportActionBar(toolbar1);
+//        this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
+//                WindowManager.LayoutParams.FLAG_FULLSCREEN);
+//        drawerLayout=findViewById(R.id.drawerlayout);
+//        ActionBarDrawerToggle toggle=new ActionBarDrawerToggle(this,drawerLayout,toolbar1,R.string.detect,R.string.close);
+//        drawerLayout.addDrawerListener(toggle);
+//
+//        toggle.syncState();
+//
+//        navigationView=findViewById(R.id.navigation_view);
+//     //   navigationView.setNavigationItemSelectedListener((NavigationView.OnNavigationItemSelectedListener) this);
+
+
+// Working of post started from here
+
 
 //    public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
 //        switch (menuItem.getItemId()) {
@@ -337,7 +315,7 @@ public class LandingPage extends AppCompatActivity {
 //    }
 
 
-    //    public boolean onNavigationItemSelected(@NonNull MenuItem menuitem) {
+//    public boolean onNavigationItemSelected(@NonNull MenuItem menuitem) {
 //        if (menuitem.getItemId() == R.id.navi_android) {
 //            Intent in =new Intent(LandingPage.this,Classify.class);
 //            startActivity(in);
@@ -350,6 +328,3 @@ public class LandingPage extends AppCompatActivity {
 //        drawerLayout.closeDrawer(GravityCompat.START);
 //        return false;
 //    }
-
-
-}
