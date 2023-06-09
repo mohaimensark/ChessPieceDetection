@@ -9,7 +9,9 @@ import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -111,7 +113,10 @@ public class LandingPage extends AppCompatActivity {
                     Intent in = new Intent(LandingPage.this, Classify.class);
                     startActivity(in);
                     break;
-
+                case R.id.profileLink:
+                    drawerLayout.closeDrawer(GravityCompat.START);
+                    startActivity(new Intent(LandingPage.this, ProfileActivity.class));
+                    break;
                 case R.id.location:
                     Toast.makeText(getApplicationContext(), "Location is open", Toast.LENGTH_LONG).show();
                     Intent in2 = new Intent(LandingPage.this, MapsActivity.class);
@@ -122,16 +127,19 @@ public class LandingPage extends AppCompatActivity {
 
                 case R.id.logout:
                     FirebaseAuth.getInstance().signOut();
+                    SharedPreferences sharedPreferences = getSharedPreferences("login", Context.MODE_PRIVATE);
+                    SharedPreferences.Editor editor = sharedPreferences.edit();
+                    editor.remove("isLoggedin");
+                    editor.commit();
                     Toast.makeText(LandingPage.this, "Logged out", Toast.LENGTH_SHORT).show();
                     startActivity(new Intent(LandingPage.this, MainActivity.class));
                     finish();
                     break;
 
-                case R.id.profileLink:
-                    startActivity(new Intent(LandingPage.this, ProfileActivity.class));
 
                 case R.id.rate:
                     startActivity(new Intent(LandingPage.this, RatingActivity.class));
+                    drawerLayout.closeDrawer(GravityCompat.START);
                     break;
                 case R.id.youtube:
                     startActivity(new Intent(LandingPage.this, Youtube.class));

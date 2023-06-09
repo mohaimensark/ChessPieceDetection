@@ -5,13 +5,17 @@ import androidx.core.app.ActivityCompat;
 
 import android.Manifest;
 import android.app.ProgressDialog;
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextUtils;
 import android.text.TextWatcher;
 import android.view.View;
 import android.widget.Button;
+import android.widget.CheckBox;
+import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -31,6 +35,7 @@ public class MainActivity extends AppCompatActivity {
      TextView forget;
     FirebaseAuth firebaseAuth;
     ActivityMainBinding binding;
+    public static final String MyPREFERENCES = "MyPrefs" ;
     ProgressDialog progressDialog;
     private FirebaseAuth authUser;
     @Override
@@ -75,6 +80,33 @@ public class MainActivity extends AppCompatActivity {
         });
 
 
+
+
+        SharedPreferences sharedPreferences = getSharedPreferences("login", Context.MODE_PRIVATE);
+
+
+
+
+        CheckBox checkBox = findViewById(R.id.remember);
+
+        boolean isLoggedIn = sharedPreferences.getBoolean("isLoggedin", false);
+        // Toast.makeText(this, "", Toast.LENGTH_SHORT).show();
+        if(isLoggedIn){
+            Toast.makeText(this, "true", Toast.LENGTH_SHORT).show();
+            startActivity(new Intent(MainActivity.this, LandingPage.class));
+        }
+
+
+
+
+
+
+
+
+
+
+
+
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -88,6 +120,18 @@ public class MainActivity extends AppCompatActivity {
                         progressDialog.cancel();
                         Toast.makeText(MainActivity.this, "Password is too short", Toast.LENGTH_SHORT).show();
                     } else {
+                        if(checkBox.isChecked())
+                        {
+                            SharedPreferences.Editor editor = sharedPreferences.edit();
+                            editor.putBoolean("isLoggedin", true);
+                            editor.commit();
+                        }
+                        else
+                        {
+                            SharedPreferences.Editor editor = sharedPreferences.edit();
+                            editor.putBoolean("isLoggedin",false);
+                            editor.commit();
+                        }
                         firebaseAuth.signInWithEmailAndPassword(email, password)
                                 .addOnSuccessListener(new OnSuccessListener<AuthResult>() {
                                     @Override
@@ -131,13 +175,15 @@ public class MainActivity extends AppCompatActivity {
 //    local storage or similar mechanisms. This means that when a user signs in, their authentication state is stored locally,
 //    allowing them to stay signed in even if they close and reopen the app. This behavior provides a session-like experience
 //    without explicitly using server-side sessions.
-    @Override
-    protected void onStart() {
-        super.onStart();
-        authUser = FirebaseAuth.getInstance();
-        if (authUser.getCurrentUser() != null) {
-            Intent intent = new Intent(MainActivity.this, LandingPage.class);
-            startActivity(intent);
-        }
-    }
+//    @Override
+//    protected void onStart() {
+//        super.onStart();
+//        authUser = FirebaseAuth.getInstance();
+//        if (authUser.getCurrentUser() != null) {
+//            Intent intent = new Intent(MainActivity.this, LandingPage.class);
+//            startActivity(intent);
+//        }
+//    }
+
+
 }

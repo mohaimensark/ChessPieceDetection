@@ -151,7 +151,7 @@ public class WritePost extends AppCompatActivity {
         // Getting profile image
         String  userID = firebaseUser.getUid();
 
-        //Extracting User reference from database for "Users"
+        //Extracting Profile from database for "Users"
         DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference("User");
         databaseReference.child(userID).addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
@@ -255,7 +255,6 @@ public class WritePost extends AppCompatActivity {
                 try {
                     bitmap = MediaStore.Images.Media.getBitmap(this.getContentResolver(), uri);
                     activityWritePostBinding.imageView.setImageBitmap(bitmap);
-                  //  predict();
                     checkSettingsAndStartLocationUpdates();
                     stopLocationUpdates();
 
@@ -348,78 +347,6 @@ public class WritePost extends AppCompatActivity {
 
 
 
-//    void predict() {
-//        try {
-//
-//            Model model = Model.newInstance(ClassifyActivity.this);
-//
-//            // Creates inputs for reference.
-//            TensorImage image = TensorImage.fromBitmap(bitmap);
-//
-//            // Runs model inference and gets result.
-//            Model.Outputs outputs = model.process(image);
-//            List<Category> probability = outputs.getProbabilityAsCategoryList();
-//
-//            probability.sort(Comparator.comparing(Category::getScore, Comparator.reverseOrder()));
-//            int score = (int) ceil(probability.get(0).getScore() * 100);
-//
-//            predictionResult = "Prediction: " + probability.get(0).getLabel() + "(" + score +"%)";
-//            activityClassifyBinding.result.setText(probability.get(0).getLabel() + ": " + score +"%");
-//
-//            // Releases model resources if no longer used.
-//            model.close();
-//        } catch (IOException e) {
-//            // TODO Handle the exception
-//        }
-//    }
-
-
-     void predict() {
-        try {
-            ModelUnquant model = ModelUnquant.newInstance(WritePost.this);
-            // Creates inputs for reference.
-            TensorBuffer inputFeature0 = TensorBuffer.createFixedSize(new int[]{1, 224, 224, 3}, DataType.FLOAT32);
-            ByteBuffer byteBuffer = ByteBuffer.allocateDirect(4 * imageSize * imageSize * 3 ) ;
-            byteBuffer.order(ByteOrder.nativeOrder()) ;
-
-            int [] intValues = new int[imageSize*imageSize] ;
-            bitmap.getPixels(intValues,0,bitmap.getWidth(),0,0,bitmap.getWidth(),bitmap.getHeight());
-            int pixel = 0  ;
-            for(int i=0 ;i<imageSize ; i++){
-                for(int j=0;j<imageSize;j++) {
-                    int val = intValues[pixel++] ;
-                    byteBuffer.putFloat(((val>>16) & 0xFF) * (1.f/255.f)) ;
-                    byteBuffer.putFloat(((val>>8) & 0xFF) * (1.f/255.f)) ;
-                    byteBuffer.putFloat((val & 0xFF)  * (1.f / 255.f)) ;
-                }
-            }
-            inputFeature0.loadBuffer(byteBuffer);
-
-            // Runs model inference and gets result.
-            ModelUnquant.Outputs outputs = model.process(inputFeature0);
-            TensorBuffer outputFeature0 = outputs.getOutputFeature0AsTensorBuffer();
-
-            int maxPos = 0 ;
-            float maxConfidence = 0 ;
-            float[] confidences = outputFeature0.getFloatArray() ;
-            for(int i=0;i<confidences.length;i++){
-                if(confidences[i]>maxConfidence) {
-                    maxConfidence = confidences[i]  ;
-                    maxPos = i ;
-                }
-            }
-            String[] classes = {"Bishop", "King", "Knight", "Pawn", "Queen","Rook"} ;
-
-            activityWritePostBinding.result.setText(classes[maxPos]);
-            // Releases model resources if no longer used.
-            model.close();
-        } catch (IOException e) {
-            // TODO Handle the exception
-        }
-    }
-
-
-
     public void UploadImage() {
 
         if (postUriImage != null) {
@@ -501,6 +428,7 @@ public class WritePost extends AppCompatActivity {
 
         }
         else {
+
             Toast.makeText(WritePost.this, "Handle URI image error!", Toast.LENGTH_LONG).show();
         }
     }
