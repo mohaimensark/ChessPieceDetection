@@ -217,44 +217,6 @@ public class ProfileActivity extends AppCompatActivity {
             });
 
 
-            //Phone verification checking
-//        TextView phoneVerificationTextView = findViewById(R.id.phone_verification_text_view);
-//
-//        if (user != null) {
-//            user.reload();
-//            String phone = user.getPhoneNumber();
-//            if (phone != null && user.isPhoneNumberVerified()) {
-//                phoneVerificationTextView.setText("Phone is verified");
-//                phoneVerificationTextView.setTextColor(Color.GREEN);
-//            }
-//        }
-//
-//        FirebaseAuth.getInstance().getCurrentUser().getIdToken(true)
-//                .addOnCompleteListener(new OnCompleteListener<GetTokenResult>() {
-//                    @Override
-//                    public void onComplete(@NonNull Task<GetTokenResult> task) {
-//                        if (task.isSuccessful()) {
-//                            FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-//                            user.reload();
-//                            String phone = user.getPhoneNumber();
-//                            if (phone != null && user.isPhoneNumberVerified()) {
-//                                phoneVerificationTextView.setText("Phone is verified");
-//                                phoneVerificationTextView.setTextColor(Color.GREEN);
-//                            }
-//                        }
-//                    }
-//                });
-
-//        binding.logout.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//
-//                FirebaseAuth.getInstance().signOut();
-//                Toast.makeText(ProfileActivity.this, "Logged out", Toast.LENGTH_SHORT).show();
-//                startActivity(new Intent(ProfileActivity.this,MainActivity.class));
-//                finish();
-//            }
-//        });
 
 
         binding.UpdateProfile.setOnClickListener(new View.OnClickListener() {

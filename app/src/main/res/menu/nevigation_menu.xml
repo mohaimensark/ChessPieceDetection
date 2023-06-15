@@ -24,6 +24,10 @@
             android:title="Verify your phone no"
             android:icon="@android:drawable/stat_sys_phone_call"
             />
+        <item android:id="@+id/gsap"
+            android:title="GSAP ANIMATION"
+            android:icon="@drawable/neon_text_background"
+            />
 
 
 

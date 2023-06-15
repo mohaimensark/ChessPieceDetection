@@ -21,6 +21,7 @@ import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
@@ -112,8 +113,35 @@ public class UpdateProfileActivity extends AppCompatActivity {
 
                 db = FirebaseFirestore.getInstance();
 
+
+
+
                 // Get the current user ID from Firebase Authentication
                 String userId = FirebaseAuth.getInstance().getCurrentUser().getUid();
+                DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference();
+
+// Specify the path to the value you want to update
+                DatabaseReference valueRef = databaseReference.child("Users_new").child(userId).child("userName");
+
+                Toast.makeText(UpdateProfileActivity.this, userId, Toast.LENGTH_SHORT).show();
+
+
+           //      Use the setValue() method to update the value
+                valueRef.setValue(upname)
+                        .addOnSuccessListener(new OnSuccessListener<Void>() {
+                            @Override
+                            public void onSuccess(Void aVoid) {
+                                // Value updated successfully
+                                Toast.makeText(UpdateProfileActivity.this, "Updated name", Toast.LENGTH_SHORT).show();
+                            }
+                        })
+                        .addOnFailureListener(new OnFailureListener() {
+                            @Override
+                            public void onFailure(@NonNull Exception e) {
+                                // Failed to update value
+                                // Handle failure or log the error message
+                            }
+                        });
 
                 // Query the "users" collection for the current user
                 db.collection("users")

@@ -92,7 +92,7 @@ public class MainActivity extends AppCompatActivity {
         boolean isLoggedIn = sharedPreferences.getBoolean("isLoggedin", false);
         // Toast.makeText(this, "", Toast.LENGTH_SHORT).show();
         if(isLoggedIn){
-            Toast.makeText(this, "true", Toast.LENGTH_SHORT).show();
+          //  Toast.makeText(this, "true", Toast.LENGTH_SHORT).show();
             startActivity(new Intent(MainActivity.this, LandingPage.class));
         }
 
@@ -138,7 +138,7 @@ public class MainActivity extends AppCompatActivity {
                                     public void onSuccess(AuthResult authResult) {
                                         progressDialog.cancel();
 
-                                        Toast.makeText(MainActivity.this, "Login success", Toast.LENGTH_SHORT).show();
+                                        Toast.makeText(MainActivity.this, "Logged In", Toast.LENGTH_SHORT).show();
                                         startActivity(new Intent(MainActivity.this, LandingPage.class));
                                     }
                                 })

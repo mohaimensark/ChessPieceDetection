@@ -29,14 +29,26 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.Query;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
+import com.google.firebase.firestore.QuerySnapshot;
+import com.google.firebase.inappmessaging.model.Button;
 
 import java.util.Calendar;
 import java.util.List;
+import java.util.Locale;
 import java.util.Objects;
-
+//
+//import com.google.i18n.phonenumbers.NumberParseException;
+//import com.google.i18n.phonenumbers.PhoneNumberUtil;
+//import com.google.i18n.phonenumbers.Phonenumber;
 public class RegisterActivity extends AppCompatActivity {
 
     TextView already;
@@ -55,6 +67,23 @@ public class RegisterActivity extends AppCompatActivity {
         setContentView(binding.getRoot());
 
         progressDialog = new ProgressDialog(this);
+
+
+
+       //  real time username checking
+        EditText username = findViewById(R.id.nameReg);
+        TextView errormsg = findViewById(R.id.errmsg3);
+
+        Integer all_ok = 1  ;
+
+
+        username.setOnFocusChangeListener((view, hasFocus) -> {     // to check the username is new or old / if old then break else continue //
+            if(!hasFocus) {
+                checkUser();
+            }
+        });
+
+
 
         //realtime email checking
         EditText emailEditText2 = findViewById(R.id.emailReg);
@@ -165,11 +194,45 @@ public class RegisterActivity extends AppCompatActivity {
                 String birthday = binding.enterAgeTextView.getText().toString();
                 String password = binding.passReg.getText().toString();
                 String confpass = binding.passConf.getText().toString();
+                int pvt = 1;
 
                 progressDialog.show();
                 firebaseAuth = FirebaseAuth.getInstance();
+                EditText phoneNumberEditText = findViewById(R.id.phone_no);
+                String phoneNumber = phoneNumberEditText.getText().toString().trim();
 
-                if (TextUtils.isEmpty(email) || TextUtils.isEmpty(password) || TextUtils.isEmpty(name)||TextUtils.isEmpty(confpass) || TextUtils.isEmpty(phone)) {
+//                PhoneNumberUtil phoneNumberUtil = PhoneNumberUtil.getInstance();
+//                try {
+//                    Phonenumber.PhoneNumber parsedPhoneNumber = phoneNumberUtil.parse(phoneNumber, null);
+//                    boolean isValidNumber = phoneNumberUtil.isValidNumber(parsedPhoneNumber);
+//
+//                    if (isValidNumber) {
+//                        // Phone number is valid
+//                        String countryIsoCode = phoneNumberUtil.getRegionCodeForNumber(parsedPhoneNumber);
+//                        String countryName = new Locale("", countryIsoCode).getDisplayCountry();
+//                        String message = "Phone number is valid\nCountry: " + countryName;
+//
+//                        Toast.makeText(getApplicationContext(), message, Toast.LENGTH_SHORT).show();
+//                    } else {
+//                        pvt = 0;
+//                        // Phone number is invalid
+//                        Toast.makeText(getApplicationContext(), "Invalid phone number", Toast.LENGTH_SHORT).show();
+//                    }
+//                } catch (NumberParseException e) {
+//                    pvt =0;
+//                    // Invalid phone number format
+//                    Toast.makeText(getApplicationContext(), "Invalid phone number format", Toast.LENGTH_SHORT).show();
+//                }
+                 if(phone.length()<11||phone.length()>11)
+                 {
+                     if(phone.charAt(0)!='0'||phone.charAt(1)!='1'){
+                         pvt=1;
+                         phoneNumberEditText.setError("Invalid Format");
+                     }
+
+                 }
+
+                if (TextUtils.isEmpty(email) || TextUtils.isEmpty(password) || TextUtils.isEmpty(name)||TextUtils.isEmpty(confpass) || TextUtils.isEmpty(phone)||pvt==0) {
                     progressDialog.cancel();
                     Toast.makeText(RegisterActivity.this, "Empty credintials", Toast.LENGTH_SHORT).show();
                 } else if (password.length() < 6) {
@@ -178,7 +241,9 @@ public class RegisterActivity extends AppCompatActivity {
                 } else if (!password.equals(confpass)) {
                     progressDialog.cancel();
                     Toast.makeText(RegisterActivity.this, "Password Missmatched!", Toast.LENGTH_SHORT).show();
-                } else {
+                }
+                else {
+
 
                                         firebaseAuth.createUserWithEmailAndPassword(email, password).addOnSuccessListener(new OnSuccessListener<AuthResult>() {
                                             @Override
@@ -253,6 +318,42 @@ public class RegisterActivity extends AppCompatActivity {
             }
         });
 
+    }
+
+    private void checkUser() {
+        int all_ok = 0 ;
+        EditText username = findViewById(R.id.nameReg);
+        TextView erroruser = findViewById(R.id.errmsg3);
+        String shortName = username.getText().toString();
+        DatabaseReference referenceProfile = FirebaseDatabase.getInstance().getReference("Users_new") ;
+
+
+        if (!shortName.isEmpty()) {
+            com.google.firebase.database.Query query = referenceProfile.orderByChild("userName").equalTo(shortName);
+
+            query.addListenerForSingleValueEvent(new ValueEventListener() {
+                @Override
+                public void onDataChange(@NonNull DataSnapshot snapshot) {
+                    if (snapshot.exists()) {
+                        username.setError("Username already exist");
+                        erroruser.setText("Username already exist");
+                     //   Toast.makeText(RegisterActivity.this,"LOL LOL  ", Toast.LENGTH_LONG).show();
+                      //  all_ok ++ ;
+                    } else {
+                        username.setError(null);
+                     //   Toast.makeText(RegisterActivity.this,"No user matched " + Integer.toString(all_ok), Toast.LENGTH_LONG).show();
+                        //editTextUsername.setCompoundDrawablesWithIntrinsicBounds(R.drawable.ic_username, 0, R.drawable.ic_ok, 0);
+                    }
+                }
+                @Override
+                public void onCancelled(@NonNull DatabaseError error) {
+                    Log.w(TAG, "Failed to read value.", error.toException());
+                }
+            });
+        }
+        else {
+            username.setError("Username cannot be empty");
+        }
     }
 
     private void sendVerificationEmail() {

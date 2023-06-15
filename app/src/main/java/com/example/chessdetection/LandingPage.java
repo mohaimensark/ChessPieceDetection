@@ -117,6 +117,10 @@ public class LandingPage extends AppCompatActivity {
                     drawerLayout.closeDrawer(GravityCompat.START);
                     startActivity(new Intent(LandingPage.this, ProfileActivity.class));
                     break;
+                case R.id.gsap:
+                    drawerLayout.closeDrawer(GravityCompat.START);
+                    startActivity(new Intent(LandingPage.this, Gsap.class));
+                    break;
                 case R.id.location:
                     Toast.makeText(getApplicationContext(), "Location is open", Toast.LENGTH_LONG).show();
                     Intent in2 = new Intent(LandingPage.this, MapsActivity.class);

@@ -94,4 +94,9 @@ dependencies {
 
     implementation 'com.firebaseui:firebase-ui-database:8.0.2'
 
+//
+//    implementation 'com.googlecode.libphonenumber:geocoding:8.12.26'
+//
+//    implementation 'com.googlecode.libphonenumber:libphonenumber:8.12.26'
+
 }

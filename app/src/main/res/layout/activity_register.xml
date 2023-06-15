@@ -65,6 +65,14 @@
                 android:layout_centerInParent="true"
                 android:hint="Enter name"
                 android:textSize="20sp" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/errmsg3"
+                android:textSize="15dp"
+                android:textColor="#B30000"
+                android:layout_below="@+id/nameReg"
+                />
 
 
 
@@ -72,12 +80,11 @@
                 android:id="@+id/enterAgeTextView"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_below="@id/nameReg"
+                android:layout_below="@id/errmsg3"
                 android:focusable="false"
                 android:layout_centerInParent="true"
                 android:hint="Birthday"
                 android:textSize="20sp" />
-
 
 
             <EditText
