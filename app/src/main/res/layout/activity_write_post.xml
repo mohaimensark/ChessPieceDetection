@@ -44,7 +44,7 @@
                 android:layout_marginTop="5dp"
                 android:layout_marginEnd="5dp"
                 android:textAllCaps="false"
-                android:backgroundTint="#167E1E"
+                android:backgroundTint="#16247E"
                 />
 
 
@@ -57,21 +57,13 @@
                 android:layout_marginTop="5dp"
                 android:layout_marginStart="5dp"
                 android:textAllCaps="false"
-                android:backgroundTint="#167E1E"
+                android:backgroundTint="#100D7C"
                 />
 
         </LinearLayout>
 
 
-        <TextView
-            android:id="@+id/result"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textSize="30sp"
-            android:layout_gravity="center"
-            android:layout_marginTop="5dp"
-            android:layout_marginBottom="2dp"
-            />
+
 
         <TextView
             android:id="@+id/imageIcon1"
@@ -82,17 +74,17 @@
             android:textColor="@color/black"
             android:textSize="20sp"
             android:textStyle="bold" />
-        <TextView
-            android:id="@+id/textViewLocationAddress"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:paddingLeft="20dp"
-            android:layout_gravity="center"
-            android:layout_marginTop="30dp"
-            android:layout_marginBottom="30dp"
-            android:textColor="@color/black"
-            android:textSize="20sp"
-            />
+
+<!--        <TextView-->
+<!--            android:id="@+id/textViewLocationAddress"-->
+<!--            android:layout_width="5dp"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_gravity="center"-->
+<!--            android:layout_marginTop="30dp"-->
+<!--            android:layout_marginBottom="30dp"-->
+<!--            android:paddingLeft="20dp"-->
+<!--            android:textColor="@color/black"-->
+<!--            android:textSize="20sp" />-->
 
 
         <EditText
@@ -118,7 +110,31 @@
 <!--            android:paddingLeft="20dp"-->
 <!--            android:textColor="@color/black"-->
 <!--            android:textSize="20sp" />-->
+        <Button
+            android:id="@+id/postButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Post"
+            android:layout_gravity="center"
+            android:textSize="18sp"
+            android:layout_marginTop="10dp"
+            android:backgroundTint="#090763"
+            android:textAllCaps="false"
+            />
+        <Button
+            android:id="@+id/GenerateBtn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Print Info"
+            android:textColor="@color/white"
+            android:layout_gravity="center"
+            android:textSize="18sp"
+            android:enabled="false"
+            android:layout_marginTop="10dp"
 
+            android:backgroundTint="#061D77"
+            android:textAllCaps="false"
+            />
 
     </LinearLayout>
 
@@ -128,17 +144,7 @@
         android:orientation="vertical">
 
 
-        <Button
-            android:id="@+id/postButton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Post"
-            android:layout_gravity="center"
-            android:textSize="18sp"
-            android:layout_marginTop="10dp"
-            android:backgroundTint="#167E1E"
-            android:textAllCaps="false"
-            />
+
 
         <ProgressBar
             android:id="@+id/progressBarPostBtn"

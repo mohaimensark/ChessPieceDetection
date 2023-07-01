@@ -117,6 +117,10 @@ public class LandingPage extends AppCompatActivity {
                     drawerLayout.closeDrawer(GravityCompat.START);
                     startActivity(new Intent(LandingPage.this, ProfileActivity.class));
                     break;
+                case R.id.invoice:
+                    drawerLayout.closeDrawer(GravityCompat.START);
+                    startActivity(new Intent(LandingPage.this, Invoice.class));
+                    break;
                 case R.id.gsap:
                     drawerLayout.closeDrawer(GravityCompat.START);
                     startActivity(new Intent(LandingPage.this, Gsap.class));

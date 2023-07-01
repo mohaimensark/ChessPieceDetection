@@ -52,9 +52,9 @@
                 android:title="Learn about chess piece"/>
 
 
-            <item android:id="@+id/uplode"
+            <item android:id="@+id/invoice"
                 android:icon="@drawable/ic_person_24"
-                android:title="Historical player"/>
+                android:title="Print Invoice"/>
 
             <item android:id="@+id/rate"
                 android:icon="@android:drawable/btn_star_big_on"
