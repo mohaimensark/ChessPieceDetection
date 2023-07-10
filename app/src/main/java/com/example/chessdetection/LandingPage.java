@@ -131,7 +131,16 @@ public class LandingPage extends AppCompatActivity {
                     startActivity(in2);
                     drawerLayout.closeDrawer(GravityCompat.START);
                     break;
-
+                case R.id.api:
+                    Intent in3 = new Intent(LandingPage.this, Historical_Player.class);
+                    startActivity(in3);
+                    drawerLayout.closeDrawer(GravityCompat.START);
+                    break;
+                case R.id.graph:
+                    Intent in4 = new Intent(LandingPage.this, GraphQl.class);
+                    startActivity(in4);
+                    drawerLayout.closeDrawer(GravityCompat.START);
+                    break;
 
                 case R.id.logout:
                     FirebaseAuth.getInstance().signOut();

@@ -99,4 +99,13 @@ dependencies {
 //
 //    implementation 'com.googlecode.libphonenumber:libphonenumber:8.12.26'
 
+    // Apollo Android
+    implementation 'com.apollographql.apollo:apollo-runtime:2.5.7'
+    implementation 'com.apollographql.apollo:apollo-coroutines-support:2.5.7'
+    implementation 'com.apollographql.apollo:apollo-http-cache:2.5.7'
+    implementation 'com.apollographql.apollo:apollo-normalized-cache-sqlite:2.5.7'
+
+    // OkHttp
+    implementation 'com.squareup.okhttp3:okhttp:4.9.0'
+
 }

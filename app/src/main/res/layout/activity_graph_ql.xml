@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+
+    tools:context=".GraphQl">
+<TextView
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:text="Fetched list"
+    android:textStyle="bold"
+    android:textAlignment="center"
+    android:textSize="30dp"
+    android:background="@color/black"
+    android:textColor="@color/white"
+    />
+    <TextView
+        android:id="@+id/idTextView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="ID: "
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/nameTextView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Name: "
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/heightTextView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Height: "
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/weightTextView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Weight: "
+        android:textStyle="bold" />
+
+</LinearLayout>

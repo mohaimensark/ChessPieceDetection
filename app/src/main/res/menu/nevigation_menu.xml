@@ -47,11 +47,13 @@
                 android:title="@string/setting"/>
 
 
-            <item android:id="@+id/ofline"
+            <item android:id="@+id/api"
                 android:icon="@android:drawable/presence_offline"
-                android:title="Learn about chess piece"/>
+                android:title="Fetch Data From Rest Api"/>
 
-
+            <item android:id="@+id/graph"
+                android:icon="@android:drawable/presence_offline"
+                android:title="GraphQL EndPoint"/>
             <item android:id="@+id/invoice"
                 android:icon="@drawable/ic_person_24"
                 android:title="Print Invoice"/>
