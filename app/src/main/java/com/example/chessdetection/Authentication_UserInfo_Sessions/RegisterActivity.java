@@ -76,7 +76,8 @@ public class RegisterActivity extends AppCompatActivity {
         Integer all_ok = 1  ;
 
 
-        username.setOnFocusChangeListener((view, hasFocus) -> {     // to check the username is new or old / if old then break else continue //
+        username.setOnFocusChangeListener((view, hasFocus) -> {     // to check the username is new or old
+                                                            // if old then break else continue //
             if(!hasFocus) {
                 checkUser();
             }
@@ -200,33 +201,14 @@ public class RegisterActivity extends AppCompatActivity {
                 EditText phoneNumberEditText = findViewById(R.id.phone_no);
                 String phoneNumber = phoneNumberEditText.getText().toString().trim();
 
-//                PhoneNumberUtil phoneNumberUtil = PhoneNumberUtil.getInstance();
-//                try {
-//                    Phonenumber.PhoneNumber parsedPhoneNumber = phoneNumberUtil.parse(phoneNumber, null);
-//                    boolean isValidNumber = phoneNumberUtil.isValidNumber(parsedPhoneNumber);
 //
-//                    if (isValidNumber) {
-//                        // Phone number is valid
-//                        String countryIsoCode = phoneNumberUtil.getRegionCodeForNumber(parsedPhoneNumber);
-//                        String countryName = new Locale("", countryIsoCode).getDisplayCountry();
-//                        String message = "Phone number is valid\nCountry: " + countryName;
-//
-//                        Toast.makeText(getApplicationContext(), message, Toast.LENGTH_SHORT).show();
-//                    } else {
-//                        pvt = 0;
-//                        // Phone number is invalid
-//                        Toast.makeText(getApplicationContext(), "Invalid phone number", Toast.LENGTH_SHORT).show();
-//                    }
-//                } catch (NumberParseException e) {
-//                    pvt =0;
-//                    // Invalid phone number format
-//                    Toast.makeText(getApplicationContext(), "Invalid phone number format", Toast.LENGTH_SHORT).show();
-//                }
                  if(phone.length()<11||phone.length()>11)
                  {
                      if(phone.charAt(0)!='0'||phone.charAt(1)!='1'){
                          pvt=1;
                          phoneNumberEditText.setError("Invalid Format");
+                         progressDialog.cancel();
+
                      }
 
                  }
@@ -276,11 +258,6 @@ public class RegisterActivity extends AppCompatActivity {
                                                             String profession = "Update your profession";
                                                             String country = "Set up your country";
 
-                                                            //Uploading demo image
-
-
-
-                                                            //end
 
 
                                                             Toast.makeText(RegisterActivity.this, "Success!", Toast.LENGTH_SHORT).show();

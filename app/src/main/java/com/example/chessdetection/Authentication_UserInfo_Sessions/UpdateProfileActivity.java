@@ -113,13 +113,13 @@ public class UpdateProfileActivity extends AppCompatActivity {
                 String userId = FirebaseAuth.getInstance().getCurrentUser().getUid();
                 DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference();
 
-// Specify the path to the value you want to update
+               // Updating into realtime database
                 DatabaseReference valueRef = databaseReference.child("Users_new").child(userId).child("userName");
 
                 Toast.makeText(UpdateProfileActivity.this, userId, Toast.LENGTH_SHORT).show();
 
 
-           //      Use the setValue() method to update the value
+                  //Use the setValue() method to update the value
                 valueRef.setValue(upname)
                         .addOnSuccessListener(new OnSuccessListener<Void>() {
                             @Override
@@ -136,7 +136,7 @@ public class UpdateProfileActivity extends AppCompatActivity {
                             }
                         });
 
-                // Query the "users" collection for the current user
+                // Query the "users" collection for the current user in Firebase Firestore
                 db.collection("users")
                         .whereEqualTo("userId", userId)
                         .get()

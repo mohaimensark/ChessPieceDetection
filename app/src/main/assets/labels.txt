@@ -3,4 +3,4 @@ King
 Knight
 Pawn
 Queen
-Rook
+Rock

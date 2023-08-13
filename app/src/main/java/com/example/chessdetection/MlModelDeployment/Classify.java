@@ -47,7 +47,7 @@ public class Classify extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_classify);
 
-        getPermission();
+        getPermission();   //Checking Camera Using Permission
         selectBtn = findViewById(R.id.selectBtn) ;
         captureBtn = findViewById(R.id.captureBtn) ;
         result = findViewById(R.id.result);
@@ -178,6 +178,30 @@ public class Classify extends AppCompatActivity {
     }
 
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 //        classBtn.setOnClickListener(new View.OnClickListener() {
 //

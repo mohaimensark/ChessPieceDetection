@@ -56,6 +56,8 @@ public class MainActivity extends AppCompatActivity {
         emailErrorTextView = findViewById(R.id.errmsg);
         EditText emailEditText;
         emailEditText = findViewById(R.id.emailSin);
+
+        //Real Time email format checking while login process
         emailEditText.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
@@ -80,23 +82,18 @@ public class MainActivity extends AppCompatActivity {
 
 
 
-
+        // Session implementation using SharedPreferences
         SharedPreferences sharedPreferences = getSharedPreferences("login", Context.MODE_PRIVATE);
-
-
-
 
         CheckBox checkBox = findViewById(R.id.remember);
 
         boolean isLoggedIn = sharedPreferences.getBoolean("isLoggedin", false);
-        // Toast.makeText(this, "", Toast.LENGTH_SHORT).show();
+
+        // Checking if previously remember button marked or not.
         if(isLoggedIn){
           //  Toast.makeText(this, "true", Toast.LENGTH_SHORT).show();
             startActivity(new Intent(MainActivity.this, LandingPage.class));
         }
-
-
-
 
 
 

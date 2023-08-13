@@ -41,6 +41,7 @@ public class RatingActivity extends AppCompatActivity {
         activityRatingBinding = ActivityRatingBinding.inflate(getLayoutInflater());
         setContentView(activityRatingBinding.getRoot());
 
+        //Storing into realtime database
         ratingUserRef = FirebaseDatabase.getInstance().getReference().child("Ratings").child("RatedUser");
 
 
@@ -318,15 +319,24 @@ public class RatingActivity extends AppCompatActivity {
 
             }
 
-
-
-
-
         });
 
-
-
         }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -397,6 +407,3 @@ public class RatingActivity extends AppCompatActivity {
 //        });
 //
 //    }
-
-
-}

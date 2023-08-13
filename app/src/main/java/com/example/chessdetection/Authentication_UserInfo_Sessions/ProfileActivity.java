@@ -86,7 +86,7 @@ public class ProfileActivity extends AppCompatActivity {
         storage = FirebaseStorage.getInstance();
 
 
-
+        // Image Uploading Start
         launcher = registerForActivityResult(new ActivityResultContracts.GetContent()
                 , new ActivityResultCallback<Uri>() {
 
@@ -143,8 +143,10 @@ public class ProfileActivity extends AppCompatActivity {
                 launcher.launch("image/*");
             }
         });
+        //Image UPloading end
 
-       // storageRef = FirebaseStorage.getInstance().getReference("ProfilePicture");
+
+
         //Loading Image
         StorageReference dc = storage.getReference().child("User").child(firebaseAuth.getCurrentUser().getUid());
 
@@ -166,6 +168,9 @@ public class ProfileActivity extends AppCompatActivity {
             }
         });
 
+
+
+        // Fetching User Information
         DocumentReference documentReference = firebaseFirestore.collection("User").document(userId);
         documentReference.addSnapshotListener(this, new EventListener<DocumentSnapshot>() {
             @Override
@@ -180,6 +185,8 @@ public class ProfileActivity extends AppCompatActivity {
             }
         });
 
+
+        // Checking Email is verified or not
         FirebaseUser userv = FirebaseAuth.getInstance().getCurrentUser();
         TextView statusTextView = findViewById(R.id.verify_email);
         user.reload();
