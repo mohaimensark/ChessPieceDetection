@@ -24,6 +24,7 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
+
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
@@ -100,12 +101,23 @@ dependencies {
 //    implementation 'com.googlecode.libphonenumber:libphonenumber:8.12.26'
 
     // Apollo Android
-    implementation 'com.apollographql.apollo:apollo-runtime:2.5.7'
     implementation 'com.apollographql.apollo:apollo-coroutines-support:2.5.7'
-    implementation 'com.apollographql.apollo:apollo-http-cache:2.5.7'
     implementation 'com.apollographql.apollo:apollo-normalized-cache-sqlite:2.5.7'
 
     // OkHttp
     implementation 'com.squareup.okhttp3:okhttp:4.9.0'
 
+
+    implementation "com.airbnb.android:lottie:6.0.0"
+
+    implementation 'com.apollographql.apollo:apollo-runtime:2.5.4'
+    implementation 'com.apollographql.apollo:apollo-http-cache:2.5.4'
+    implementation 'com.apollographql.apollo:apollo-runtime:2.5.9'
+    implementation 'com.apollographql.apollo:apollo-android-support:2.5.9'
+
+
 }
+//apollo {
+//    generateKotlinModels = false // Set this to true if you prefer Kotlin models
+//    graphqlSourceDirectorySet = files("${project.rootDir}/src/main/res/raw")
+//}

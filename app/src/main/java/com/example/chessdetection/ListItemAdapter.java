@@ -10,6 +10,8 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 
 import com.bumptech.glide.Glide;
+import com.example.chessdetection.Comment.CommentActivity;
+import com.example.chessdetection.Post.PostDetailsModel;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
 import com.google.firebase.auth.FirebaseAuth;
@@ -50,7 +52,7 @@ public class ListItemAdapter extends FirebaseRecyclerAdapter<PostDetailsModel, m
         holder.getLikeButtonStatus(postKey, userId);
 
         if(model.getProfileImageUrl()!=null){
-            Glide.with(holder.postProfileImage.getContext()).load(model.getProfileImageUrl()).into(holder.postProfileImage);
+            Glide.with(holder.postProfileImage.getContext()).load(model.getProfileImageUrl()).placeholder(R.drawable.ic_image_24).into(holder.postProfileImage);
         }
 
         holder.userName.setText(model.getUserName());
@@ -113,7 +115,7 @@ public class ListItemAdapter extends FirebaseRecyclerAdapter<PostDetailsModel, m
         holder.commentImg.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent=new Intent(mContext,CommentActivity.class);
+                Intent intent=new Intent(mContext, CommentActivity.class);
                 intent.putExtra("postKey",postKey);
                 mContext.startActivity(intent);
             }

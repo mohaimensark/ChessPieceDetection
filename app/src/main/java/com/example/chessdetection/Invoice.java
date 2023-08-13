@@ -21,6 +21,7 @@ import android.provider.MediaStore;
 import android.view.View;
 import android.widget.Toast;
 
+import com.example.chessdetection.Authentication_UserInfo_Sessions.UserDetails;
 import com.example.chessdetection.databinding.ActivityInvoiceBinding;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -49,7 +50,7 @@ public class Invoice extends AppCompatActivity {
         if (getSupportActionBar() != null) {
             getSupportActionBar().hide();
         }
-        activityInvoiceBinding.actionbarPdf.actionTitle.setText("Info");
+
 
         ActivityCompat.requestPermissions(this, new String[] {
                 Manifest.permission.WRITE_EXTERNAL_STORAGE}, PackageManager.PERMISSION_GRANTED);
@@ -110,7 +111,7 @@ public class Invoice extends AppCompatActivity {
         PdfDocument.PageInfo pageInfo = new PdfDocument.PageInfo.Builder(400, 600, 1).create();
         PdfDocument.Page page1 = pdfDocument.startPage(pageInfo);
         Canvas canvas = page1.getCanvas();
-        Toast.makeText(this, "A", Toast.LENGTH_SHORT).show();
+      //  Toast.makeText(this, "A", Toast.LENGTH_SHORT).show();
         // Draw icon
         Drawable iconDrawable = getResources().getDrawable(R.drawable.ic_baseline_menu_24);
         float scale = getResources().getDisplayMetrics().density;
@@ -120,18 +121,18 @@ public class Invoice extends AppCompatActivity {
         int iconHeightPixels = (int) (iconHeightDP * scale + 0.5f);
         iconDrawable.setBounds(0, 0, iconWidthPixels, iconHeightPixels);
         iconDrawable.draw(canvas);
-        Toast.makeText(this, "B", Toast.LENGTH_SHORT).show();
+    //    Toast.makeText(this, "B", Toast.LENGTH_SHORT).show();
         paint.setTextAlign(Paint.Align.CENTER);
         paint.setTextSize(20f);
         paint.setColor(Color.rgb(22, 30, 126));
         canvas.drawText("ChessPiece Detection", pageInfo.getPageWidth()/2 , 50, paint);
 
-        Toast.makeText(this, "J", Toast.LENGTH_SHORT).show();
+   //     Toast.makeText(this, "J", Toast.LENGTH_SHORT).show();
         paint.setTextAlign(Paint.Align.LEFT);
         paint.setTextSize(15f);
         paint.setColor(Color.rgb(22, 30, 126));
         canvas.drawText("Personal Information", 20 , 80, paint);
-        Toast.makeText(this, "C", Toast.LENGTH_SHORT).show();
+     //   Toast.makeText(this, "C", Toast.LENGTH_SHORT).show();
         paint.setTextAlign(Paint.Align.LEFT);
         paint.setTextSize(12f);
         paint.setColor(Color.BLACK);

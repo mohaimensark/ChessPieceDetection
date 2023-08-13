@@ -74,9 +74,11 @@
         <!-- Location Icon -->
         <ImageView
             android:id="@+id/location_icon"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@drawable/ic_location_on_24" />
+            android:layout_width="30dp"
+            android:layout_marginBottom="10dp"
+            android:layout_height="30dp"
+            android:src="@drawable/img_3"
+            />
 
         <!-- Location Text -->
         <TextView
@@ -93,7 +95,7 @@
     <ImageView
         android:id="@+id/postImage"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="400dp"
         android:src="@drawable/pichhi" />
 
     <View
@@ -124,7 +126,7 @@
                 android:id="@+id/likecc"
                 android:layout_width="24dp"
                 android:layout_height="24dp"
-                android:src="@drawable/ic_baseline_favorite" />
+                android:src="@drawable/img" />
 
             <TextView
                 android:id="@+id/likeCou"
@@ -149,7 +151,8 @@
                 android:id="@+id/comment_button"
                 android:layout_width="24dp"
                 android:layout_height="24dp"
-                android:src="@drawable/ic_comment_24" />
+                android:elevation="10dp"
+                android:src="@drawable/img_2" />
 
             <TextView
                 android:id="@+id/commentCount"
@@ -167,5 +170,6 @@
         android:layout_width="match_parent"
         android:layout_height="5dp"
         android:layout_marginTop="10dp"
+
         android:background="@drawable/line_divider"/>
 </LinearLayout>

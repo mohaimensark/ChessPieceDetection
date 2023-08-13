@@ -7,6 +7,8 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.webkit.WebView;
 
+import com.example.chessdetection.Authentication_UserInfo_Sessions.MainActivity;
+
 public class SplashScreen extends AppCompatActivity {
 
     private static final long SPLASH_DISPLAY_LENGTH = 4000;

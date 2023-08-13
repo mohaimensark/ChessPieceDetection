@@ -48,13 +48,13 @@ public class myViewHolder extends RecyclerView.ViewHolder {
                 if(snapshot.child(postkey).hasChild(userid)){
                     int likeCount = (int)snapshot.child(postkey).getChildrenCount();
                     numReact.setText(String.valueOf(likeCount));
-                    likeImg.setImageResource(R.drawable.ic_baseline_favorite_2);
+                    likeImg.setImageResource(R.drawable.img_1);
 
                 }
                 else{
                     int likeCount = (int)snapshot.child(postkey).getChildrenCount();
                     numReact.setText(String.valueOf(likeCount));
-                    likeImg.setImageResource(R.drawable.ic_baseline_favorite);
+                    likeImg.setImageResource(R.drawable.img);
                 }
             }
 

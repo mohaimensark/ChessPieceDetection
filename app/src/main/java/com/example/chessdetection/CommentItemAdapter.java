@@ -7,6 +7,7 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 
 import com.bumptech.glide.Glide;
+import com.example.chessdetection.Comment.CommentModel;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
 
@@ -26,7 +27,7 @@ public class CommentItemAdapter extends FirebaseRecyclerAdapter<CommentModel, Co
     @Override
     protected void onBindViewHolder(@NonNull CommentViewHolder holder, int position, @NonNull CommentModel model) {
 
-        Glide.with(holder.commentUserImage.getContext()).load(model.getCommentUserImage()).into(holder.commentUserImage);
+        Glide.with(holder.commentUserImage.getContext()).load(model.getCommentUserImage()).placeholder(R.drawable.ic_image_24).into(holder.commentUserImage);
         holder.commentUserName.setText(model.getCommentUserName());
         holder.commentText.setText(model.getCommentText());
         holder.commentDateTime.setText("Date :"+model.getCommentDate()+" Time :"+model.getCommentTime());

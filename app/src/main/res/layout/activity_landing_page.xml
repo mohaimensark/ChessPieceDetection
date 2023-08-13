@@ -21,10 +21,10 @@
             android:id="@+id/toolBar"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
-            android:background="#4C0505"
+            android:background="#27292f"
             android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
             app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
-            app:titleTextColor="#FFE500"
+            app:titleTextColor="#FFFFFF"
             android:elevation="4dp" />
 
         <!-- RecyclerView -->

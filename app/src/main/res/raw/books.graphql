@@ -1,0 +1,6 @@
+query GetBooks($username: String!, $country: String!) {
+  books(username: $username, country: $country) {
+    title
+    author
+  }
+}

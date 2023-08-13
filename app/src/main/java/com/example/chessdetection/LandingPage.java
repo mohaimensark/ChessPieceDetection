@@ -22,6 +22,13 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 
+import com.example.chessdetection.Authentication_UserInfo_Sessions.MainActivity;
+import com.example.chessdetection.Authentication_UserInfo_Sessions.ProfileActivity;
+import com.example.chessdetection.LocationTasks.MapsActivity;
+import com.example.chessdetection.MlModelDeployment.Classify;
+import com.example.chessdetection.RestApi.RestApi;
+import com.example.chessdetection.Post.PostDetailsModel;
+import com.example.chessdetection.Post.WritePost;
 import com.example.chessdetection.databinding.ActivityLandingPageBinding;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
 import com.google.android.material.navigation.NavigationView;
@@ -32,8 +39,6 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
-
-import org.checkerframework.checker.nullness.qual.NonNull;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 
@@ -132,7 +137,7 @@ public class LandingPage extends AppCompatActivity {
                     drawerLayout.closeDrawer(GravityCompat.START);
                     break;
                 case R.id.api:
-                    Intent in3 = new Intent(LandingPage.this, Historical_Player.class);
+                    Intent in3 = new Intent(LandingPage.this, RestApi.class);
                     startActivity(in3);
                     drawerLayout.closeDrawer(GravityCompat.START);
                     break;
@@ -164,9 +169,7 @@ public class LandingPage extends AppCompatActivity {
                 case R.id.setting:
                     startActivity(new Intent(LandingPage.this, SettingsActivity.class));
                     break;
-                case R.id.phoneVerify:
-                    startActivity(new Intent(LandingPage.this, PhoneVerification.class));
-                    break;
+
             }
 
             return true;

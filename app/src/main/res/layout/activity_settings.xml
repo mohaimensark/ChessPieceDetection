@@ -26,34 +26,14 @@
         android:padding="20sp"
         android:textStyle="bold" />
 
-    <TextView
-        android:id="@+id/theme"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/txtSettings"
-        android:textSize="20sp"
-        android:layout_centerInParent="true"
-        android:text="Choose theme"
-        android:layout_marginBottom="20dp"
-        android:autofillHints="true" />
 
-    <TextView
-        android:id="@+id/privacy"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/theme"
-        android:textSize="20sp"
-        android:layout_marginBottom="20dp"
-        android:layout_centerInParent="true"
-        android:text="Privacy"
-        />
 
 
     <TextView
         android:id="@+id/del_acc"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/privacy"
+        android:layout_below="@+id/txtSettings"
         android:layout_marginBottom="10dp"
         android:fontFamily="@font/ubuntu_medium"
         android:text="Delete Account"
@@ -62,6 +42,17 @@
 
 
 
+        <com.airbnb.lottie.LottieAnimationView
+            android:layout_width="200dp"
+            android:layout_height="400dp"
+            android:layout_centerInParent="true"
+            app:lottie_autoPlay="true"
+            android:id="@+id/lott"
+            android:layout_marginTop="100dp"
+            android:layout_below="@+id/del_acc"
+            app:lottie_rawRes="@raw/settings"
+            app:lottie_loop="true"
+            />
 
 
 
