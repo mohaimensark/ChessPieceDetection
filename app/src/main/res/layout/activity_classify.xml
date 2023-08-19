@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
+
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
@@ -14,7 +15,7 @@
         android:layout_height="300dp"
         android:layout_centerHorizontal="true"
         android:layout_gravity="center"
-        android:layout_marginTop="50dp"
+        android:layout_marginTop="20dp"
         android:src="@mipmap/ic_launcher" />
 
 
@@ -25,7 +26,7 @@
         android:layout_below="@+id/imageView"
         android:layout_centerHorizontal="true"
         android:layout_gravity="center"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="10dp"
         android:text="Select image"
 
         />
@@ -37,9 +38,7 @@
         android:layout_below="@+id/selectBtn"
         android:layout_centerHorizontal="true"
         android:layout_gravity="center"
-        android:layout_marginTop="20dp"
-        android:background="#01DD47"
-        android:backgroundTint="#16F106"
+        android:layout_marginTop="10dp"
         android:text="Capture image"
 
         />
@@ -52,20 +51,31 @@
         android:layout_height="40dp"
         android:layout_below="@+id/captureBtn"
         android:textSize="30sp"
+        android:textColor="#F30808"
         android:layout_gravity="center"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="10dp"
         />
 
     <com.airbnb.lottie.LottieAnimationView
-        android:layout_width="300dp"
-        android:layout_height="120dp"
-        app:lottie_autoPlay="true"
-        android:layout_centerInParent="true"
         android:id="@+id/lott"
-        app:lottie_rawRes="@raw/mlanim"
+        android:layout_width="300dp"
+        android:layout_height="100dp"
         android:layout_below="@+id/result"
+        android:layout_centerInParent="true"
+        app:lottie_autoPlay="true"
         app:lottie_loop="true"
-        />
+        app:lottie_rawRes="@raw/mlanim" />
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/confidences2"
+        android:textColor="#46EA0B"
+        android:layout_marginLeft="150dp"
+        android:layout_marginTop="5dp"
+        android:layout_below="@+id/lott"
+        android:layout_marginBottom="5dp"
+      />
+
     <TextView
 
         android:id="@+id/backtohome_fromdetection"
@@ -73,11 +83,11 @@
         android:layout_height="wrap_content"
 
         android:text="Back to home page"
-        android:textColor="#4FB537"
+        android:textColor="#00070E"
         android:textSize="20dp"
-
+        android:layout_below="@+id/confidences2"
         android:layout_alignParentBottom="true"
-        android:layout_marginBottom="30dp"
+        android:layout_marginBottom="10dp"
        android:layout_marginLeft="120dp"
 
      />

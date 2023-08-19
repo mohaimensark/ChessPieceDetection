@@ -13,6 +13,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -38,8 +39,9 @@ public class Classify extends AppCompatActivity {
     Button selectBtn, captureBtn;
     ImageView imageView;
     TextView result;
+    String S;
     Bitmap image;
-    TextView back;
+    TextView back,confidences2;
     int imageSize = 224 ;
 
     @Override
@@ -51,6 +53,7 @@ public class Classify extends AppCompatActivity {
         selectBtn = findViewById(R.id.selectBtn) ;
         captureBtn = findViewById(R.id.captureBtn) ;
         result = findViewById(R.id.result);
+        confidences2 = findViewById(R.id.confidences2);
         imageView = findViewById(R.id.imageView);
         back = findViewById(R.id.backtohome_fromdetection);
 
@@ -138,9 +141,16 @@ public class Classify extends AppCompatActivity {
                     maxPos = i ;
                 }
             }
+
             String[] classes = {"Bishop", "King", "Knight", "Pawn", "Queen","Rook"} ;
+
             result.setText(classes[maxPos]);
             // Releases model resources if no longer used.
+            String s = "";
+            for (int i =0; i< classes.length;i++){
+                s += String.format("%s: %.1f%%\n",classes[i],confidences[i]*100);
+            }
+            confidences2.setText(s);
             model.close();
         } catch (IOException e) {
             // TODO Handle the exception
