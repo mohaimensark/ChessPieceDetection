@@ -22,6 +22,8 @@ public class myViewHolder extends RecyclerView.ViewHolder {
     TextView userName, prRes, postLoc, numReact, postTimeStamp, commentCnt,postText;
     DatabaseReference likeReference;
 
+    // This is for post view holder
+
     public myViewHolder(@NonNull View itemView) {
         super(itemView);
 

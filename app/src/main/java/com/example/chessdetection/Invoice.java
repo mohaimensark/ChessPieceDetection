@@ -111,7 +111,7 @@ public class Invoice extends AppCompatActivity {
         PdfDocument.PageInfo pageInfo = new PdfDocument.PageInfo.Builder(400, 600, 1).create();
         PdfDocument.Page page1 = pdfDocument.startPage(pageInfo);
         Canvas canvas = page1.getCanvas();
-      //  Toast.makeText(this, "A", Toast.LENGTH_SHORT).show();
+        //  Toast.makeText(this, "A", Toast.LENGTH_SHORT).show();
         // Draw icon
         Drawable iconDrawable = getResources().getDrawable(R.drawable.ic_baseline_menu_24);
         float scale = getResources().getDisplayMetrics().density;

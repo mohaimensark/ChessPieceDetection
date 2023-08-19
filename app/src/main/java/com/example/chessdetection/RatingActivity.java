@@ -2,13 +2,18 @@ package com.example.chessdetection;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
 
+import com.example.chessdetection.Post.WritePost;
 import com.example.chessdetection.databinding.ActivityRatingBinding;
+import com.firebase.ui.database.FirebaseRecyclerOptions;
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -19,14 +24,18 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.firestore.auth.User;
 
+import java.util.HashMap;
 import java.util.Locale;
+import java.util.Random;
 
 public class RatingActivity extends AppCompatActivity {
 
     ActivityRatingBinding activityRatingBinding;
 
     FirebaseUser firebaseUser;
-    DatabaseReference ratingRef, ratingUserRef, ratingDel, ratingRef2, ratingRef3, ratingRef4;
+    String ratingUserImage;
+    DatabaseReference ratingRef, ratingUserRef, ratingDel, ratingRef2, ratingRef3, ratingRef4, ratingDetailsRef;
+    RatingAdapter ratingListAdapter;;
 
 
     int userCount, newTot, curval;
@@ -43,6 +52,9 @@ public class RatingActivity extends AppCompatActivity {
 
         //Storing into realtime database
         ratingUserRef = FirebaseDatabase.getInstance().getReference().child("Ratings").child("RatedUser");
+
+
+
 
 
         ratingUserRef.addValueEventListener(new ValueEventListener() {
@@ -87,7 +99,18 @@ public class RatingActivity extends AppCompatActivity {
                 // Handle any errors
             }
         });
+        //Set rating List adapter
+        ratingDetailsRef = FirebaseDatabase.getInstance().getReference().child("Ratings").child("RatingDetails");
+        activityRatingBinding.recyclerViewRating.setLayoutManager(new LinearLayoutManager(this));
 
+        FirebaseRecyclerOptions<RatingModel> options =
+                new FirebaseRecyclerOptions.Builder<RatingModel>()
+                        .setQuery(ratingDetailsRef, RatingModel.class)
+                        .build();
+
+        ratingListAdapter = new RatingAdapter(options);
+        activityRatingBinding.recyclerViewRating.setAdapter(ratingListAdapter);
+       // end others user rating
 
         firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
         String userId = firebaseUser.getUid();
@@ -227,8 +250,31 @@ public class RatingActivity extends AppCompatActivity {
                     updateRating(userId, 5);
                 }
             }
-        });
+        }); // Getting profile image
+        String  userID = firebaseUser.getUid();
+        DatabaseReference mDatabase;
+// ...
+        mDatabase = FirebaseDatabase.getInstance().getReference();
+        //Extracting Profile from database for "Users"
+        try {
 
+            mDatabase.child("User").child(userID).get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
+                @Override
+                public void onComplete(@NonNull Task<DataSnapshot> task) {
+                    if (!task.isSuccessful()) {
+                        Log.e("firebase", "Error getting data", task.getException());
+                    }
+                    else {
+                        ratingUserImage =  String.valueOf(task.getResult().getValue());
+                  //      Toast.makeText(RatingActivity.this, ratingUserImage, Toast.LENGTH_SHORT).show();
+                    }
+                }
+            });
+
+        } catch (Exception e) {
+            // Handle any exceptions that occur
+            ratingUserImage = "null";
+        }
     }
 
 
@@ -246,6 +292,7 @@ public class RatingActivity extends AppCompatActivity {
                 if (snapshot.exists()) {
                     String num = snapshot.getValue().toString();
                     curval = Integer.parseInt(num);
+
                 }
             }
 
@@ -281,6 +328,7 @@ public class RatingActivity extends AppCompatActivity {
                 for (DataSnapshot ds : snapshot.getChildren()) {
                     String lol = ds.getValue().toString();
                     curval = Integer.parseInt(lol);
+
                     total += curval;
                 }
                // Toast.makeText(RatingActivity.this, tp, Toast.LENGTH_SHORT).show();
@@ -320,8 +368,78 @@ public class RatingActivity extends AppCompatActivity {
             }
 
         });
+        ratingUserRef = FirebaseDatabase.getInstance().getReference().child("Users_new");
 
-        }
+        FirebaseUser firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
+        final String currentUserId = firebaseUser.getUid();
+
+        ratingUserRef.child(currentUserId).addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                if(snapshot.exists())
+                {
+                    String ratingUserName = snapshot.child("userName").getValue().toString();
+
+
+
+              //      Toast.makeText(RatingActivity.this, ratingUserImage, Toast.LENGTH_SHORT).show();
+                        processRating(ratingUserName,ratingUserImage, currentUserId, giRating);
+
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+
+
+    }
+
+
+    private void processRating(String ratUserName, String ratUserImage, String currentUserId, int givenRat) {
+
+        String ratingText = activityRatingBinding.ratingFeedback.getText().toString();
+        String randomRatKey = currentUserId;
+
+        HashMap ratingDetails=new HashMap();
+        ratingDetails.put("Userid",currentUserId);
+        ratingDetails.put("UserName",ratUserName);
+        ratingDetails.put("UserImage",ratUserImage);
+        ratingDetails.put("Text",ratingText);
+        ratingDetails.put("givenRating", givenRat);
+
+        ratingDetailsRef = FirebaseDatabase.getInstance().getReference().child("Ratings").child("RatingDetails");
+
+        ratingDetailsRef.child(randomRatKey).updateChildren(ratingDetails)
+                .addOnCompleteListener(new OnCompleteListener() {
+                    @Override
+                    public void onComplete(@NonNull Task task) {
+                        if(task.isSuccessful()) {
+                            Toast.makeText(getApplicationContext(), "Rating Added", Toast.LENGTH_LONG).show();
+                            activityRatingBinding.ratingFeedback.setText("");
+                        }
+                        else {
+                            Toast.makeText(getApplicationContext(), task.toString(), Toast.LENGTH_LONG).show();
+                        }
+                    }
+                })
+                .addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+
+                    }
+                });
+
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        ratingListAdapter.startListening();
+    }
+
 }
 
 

@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
 
@@ -68,6 +69,30 @@ public class CommentActivity extends AppCompatActivity {
         activityCommentBinding.commentRecyclerviewId.setAdapter(commentItemAdapter);
 
 
+        String  userID = firebaseUser.getUid();
+        DatabaseReference mDatabase;
+// ...
+        mDatabase = FirebaseDatabase.getInstance().getReference();
+        //Extracting Profile from database for "Users"
+        try {
+
+            mDatabase.child("User").child(userID).get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
+                @Override
+                public void onComplete(@NonNull Task<DataSnapshot> task) {
+                    if (!task.isSuccessful()) {
+                        Log.e("firebase", "Error getting data", task.getException());
+                    }
+                    else {
+                        commentUserImage =  String.valueOf(task.getResult().getValue());
+                        //   Toast.makeText(WritePost.this, ProfileLink, Toast.LENGTH_SHORT).show();
+                    }
+                }
+            });
+
+        } catch (Exception e) {
+            // Handle any exceptions that occur
+            commentUserImage = "null";
+        }
 
         activityCommentBinding.commentSubmitBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -80,13 +105,7 @@ public class CommentActivity extends AppCompatActivity {
                         {
                             String commentUserName = snapshot.child("userName").getValue().toString();
 
-                            String commentUserImage;
-                            if (firebaseUser.getPhotoUrl() != null) {
-                                commentUserImage = firebaseUser.getPhotoUrl().toString();
-                            } else {
-                                // Set the profile image from a drawable resource
-                                commentUserImage = "android.resources://" + getPackageName() + "/" + R.drawable.ic_image_24;
-                            }
+
 
                             processComment(commentUserName,commentUserImage, currentUserId);
 

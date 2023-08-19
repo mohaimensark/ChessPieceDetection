@@ -28,22 +28,25 @@ public class ListItemAdapter extends FirebaseRecyclerAdapter<PostDetailsModel, m
     DatabaseReference likeRef;
     Boolean testClick = false;
 
+    // Post Item Adapter
+
     private Context mContext;
 
     public ListItemAdapter(@NonNull FirebaseRecyclerOptions<PostDetailsModel> options, Context context) {
         super(options);
-        mContext = context;
+        mContext = context;   // This is for using toast
     }
 
     @NonNull
     @Override
-    public myViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+    public myViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) { // Inflating layout
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.list_item, parent, false);
         return new myViewHolder(view);
     }
 
     @Override
     protected void onBindViewHolder(@NonNull myViewHolder holder, int position, @NonNull PostDetailsModel model) {
+
 
         firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
         String userId = firebaseUser.getUid();
@@ -52,6 +55,8 @@ public class ListItemAdapter extends FirebaseRecyclerAdapter<PostDetailsModel, m
         holder.getLikeButtonStatus(postKey, userId);
 
         if(model.getProfileImageUrl()!=null){
+            Glide.with(holder.postProfileImage.getContext()).load(model.getProfileImageUrl()).into(holder.postProfileImage);
+        }else{
             Glide.with(holder.postProfileImage.getContext()).load(model.getProfileImageUrl()).placeholder(R.drawable.ic_image_24).into(holder.postProfileImage);
         }
 

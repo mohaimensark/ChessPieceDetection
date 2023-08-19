@@ -42,6 +42,8 @@ import com.google.firebase.storage.FirebaseStorage;
 import java.util.Calendar;
 import java.util.List;
 import java.util.Objects;
+import java.util.regex.Pattern;
+
 //
 //import com.google.i18n.phonenumbers.NumberParseException;
 //import com.google.i18n.phonenumbers.PhoneNumberUtil;
@@ -51,6 +53,7 @@ public class RegisterActivity extends AppCompatActivity {
     TextView already;
     ActivityRegisterBinding binding;
     FirebaseAuth firebaseAuth;
+    Boolean uniUser;
     ProgressDialog progressDialog;
     View login_again;
     FirebaseFirestore firebaseFirestore;
@@ -202,18 +205,20 @@ public class RegisterActivity extends AppCompatActivity {
                 String phoneNumber = phoneNumberEditText.getText().toString().trim();
 
 //
-                 if(phone.length()<11||phone.length()>11)
+                 if(!mobileNumberValidation(phone))
                  {
-                     if(phone.charAt(0)!='0'||phone.charAt(1)!='1'){
-                         pvt=1;
-                         phoneNumberEditText.setError("Invalid Format");
+
+
                          progressDialog.cancel();
+                         Toast.makeText(RegisterActivity.this, "Invalid Phone no!", Toast.LENGTH_SHORT).show();
 
-                     }
 
+
+                 }else if(!uniUser){
+                     progressDialog.cancel();
+                     Toast.makeText(RegisterActivity.this, "Username not available", Toast.LENGTH_SHORT).show();
                  }
-
-                if (TextUtils.isEmpty(email) || TextUtils.isEmpty(password) || TextUtils.isEmpty(name)||TextUtils.isEmpty(confpass) || TextUtils.isEmpty(phone)||pvt==0) {
+               else if (TextUtils.isEmpty(email) || TextUtils.isEmpty(password) || TextUtils.isEmpty(name)||TextUtils.isEmpty(confpass) || TextUtils.isEmpty(phone)||pvt==0) {
                     progressDialog.cancel();
                     Toast.makeText(RegisterActivity.this, "Empty credintials", Toast.LENGTH_SHORT).show();
                 } else if (password.length() < 6) {
@@ -320,11 +325,14 @@ public class RegisterActivity extends AppCompatActivity {
                 public void onDataChange(@NonNull DataSnapshot snapshot) {
                     if (snapshot.exists()) {
                         username.setError("Username already exist");
-                        erroruser.setText("Username already exist");
+                        uniUser=false;
+                    //    erroruser.setText("Username already exist");
                      //   Toast.makeText(RegisterActivity.this,"LOL LOL  ", Toast.LENGTH_LONG).show();
                       //  all_ok ++ ;
                     } else {
                         username.setError(null);
+                        uniUser=true;
+                   //     username.setText("Username available");
                      //   Toast.makeText(RegisterActivity.this,"No user matched " + Integer.toString(all_ok), Toast.LENGTH_LONG).show();
                         //editTextUsername.setCompoundDrawablesWithIntrinsicBounds(R.drawable.ic_username, 0, R.drawable.ic_ok, 0);
                     }
@@ -338,6 +346,16 @@ public class RegisterActivity extends AppCompatActivity {
         else {
             username.setError("Username cannot be empty");
         }
+    }
+    public static boolean mobileNumberValidation(String number) {
+        // Regular expression for a valid Bangladeshi mobile number
+        String regex = "^01[3-9]\\d{8}$";
+
+        // Compile the regex pattern
+        Pattern pattern = Pattern.compile(regex);
+
+        // Check if the provided number matches the pattern
+        return pattern.matcher(number).matches();
     }
 
     private void sendVerificationEmail() {

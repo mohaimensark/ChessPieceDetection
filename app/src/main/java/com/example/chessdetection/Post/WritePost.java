@@ -29,6 +29,7 @@ import android.provider.MediaStore;
 import android.text.Layout;
 import android.text.StaticLayout;
 import android.text.TextPaint;
+import android.util.Log;
 import android.view.View;
 import android.webkit.MimeTypeMap;
 import android.widget.Button;
@@ -48,6 +49,7 @@ import com.google.android.gms.location.LocationServices;
 import com.google.android.gms.location.LocationSettingsRequest;
 import com.google.android.gms.location.LocationSettingsResponse;
 import com.google.android.gms.location.SettingsClient;
+import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
@@ -146,7 +148,7 @@ public class WritePost extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                UploadImage();
+                UploadPost();
             }
         });
         activityWritePostBinding.GenerateBtn.setOnClickListener(new View.OnClickListener() {
@@ -157,19 +159,28 @@ public class WritePost extends AppCompatActivity {
         });
         // Getting profile image
         String  userID = firebaseUser.getUid();
-
+         DatabaseReference mDatabase;
+// ...
+        mDatabase = FirebaseDatabase.getInstance().getReference();
         //Extracting Profile from database for "Users"
         try {
 
-            if (firebaseUser.getPhotoUrl() != null) {
-                ProfileLink = firebaseUser.getPhotoUrl().toString();
-            } else {
-                // Set the profile image from a drawable resource
-                ProfileLink = "android.resources://" + getPackageName() + "/" + R.drawable.ic_image_24;
-            }
+            mDatabase.child("User").child(userID).get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
+                @Override
+                public void onComplete(@NonNull Task<DataSnapshot> task) {
+                    if (!task.isSuccessful()) {
+                        Log.e("firebase", "Error getting data", task.getException());
+                    }
+                    else {
+                       ProfileLink =  String.valueOf(task.getResult().getValue());
+                     //   Toast.makeText(WritePost.this, ProfileLink, Toast.LENGTH_SHORT).show();
+                    }
+                }
+            });
+
         } catch (Exception e) {
             // Handle any exceptions that occur
-            ProfileLink = "EMpTY";
+            ProfileLink = "null";
         }
         enablePdfButton();
     }
@@ -499,7 +510,7 @@ public class WritePost extends AppCompatActivity {
 
 
 
-    public void UploadImage() {
+    public void UploadPost() {
 
         if (postUriImage != null) {
 

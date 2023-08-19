@@ -183,7 +183,7 @@ public class LandingPage extends AppCompatActivity {
 
         FirebaseRecyclerOptions<PostDetailsModel> options =
                 new FirebaseRecyclerOptions.Builder<PostDetailsModel>()
-                        .setQuery(FirebaseDatabase.getInstance().getReference().child("Posts"), PostDetailsModel.class)
+                        .setQuery( FirebaseDatabase.getInstance().getReference().child("Posts").orderByValue(), PostDetailsModel.class)
                         .build();
 
         listItemAdapter = new ListItemAdapter(options, LandingPage.this);
@@ -244,6 +244,19 @@ public class LandingPage extends AppCompatActivity {
 
 
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
